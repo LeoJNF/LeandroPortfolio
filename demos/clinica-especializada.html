@@ -221,6 +221,20 @@
       .section { padding: 4rem 1.5rem; }
       .esp-grid, .dep-grid { grid-template-columns: 1fr; }
     }
+    @media (max-width: 700px) {
+      nav { padding: .9rem 1rem; flex-wrap: wrap; gap: .8rem; }
+      .nav-links { display: none; }
+      .nav-btn { width: 100%; text-align: center; }
+      .hero { padding: 3rem 1.25rem; min-height: auto; }
+      .hero::before { display: none; }
+      .hero-btns { flex-direction: column; }
+      .btn-white, .btn-ghost { width: 100%; text-align: center; }
+      .hero-card-side { padding: 1.5rem; }
+      .hc-stat { font-size: 2rem; }
+      .section, .cta { padding: 3.5rem 1.25rem; }
+      .cta-btns { flex-direction: column; }
+      .cta-btns a { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
 <body>

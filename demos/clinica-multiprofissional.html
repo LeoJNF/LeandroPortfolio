@@ -225,6 +225,20 @@
       .struct-grid { grid-template-columns: 1fr; }
       .sched-grid { grid-template-columns: 1fr; }
     }
+    @media (max-width: 700px) {
+      nav { padding: .9rem 1rem; flex-wrap: wrap; gap: .8rem; }
+      .nav-pills { display: none; }
+      .nav-cta { width: 100%; justify-content: center; }
+      .hero { padding: 2.5rem 1.25rem; min-height: auto; }
+      .hero-btns { flex-direction: column; }
+      .btn-purple, .btn-out { width: 100%; text-align: center; }
+      .spec-card { flex-wrap: wrap; padding: 1.1rem; }
+      .spec-card-avail { margin-left: 0; }
+      .section, .conv, .sched { padding: 3.5rem 1.25rem; }
+      .prof-grid { grid-template-columns: 1fr; }
+      .conv-inner { flex-direction: column; align-items: flex-start; }
+      .conv-list { gap: .6rem; }
+    }
   </style>
 </head>
 <body>

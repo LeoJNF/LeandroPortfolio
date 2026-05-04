@@ -243,6 +243,21 @@
       .equipe-grid { grid-template-columns: 1fr; }
       .faq-grid { grid-template-columns: 1fr; }
     }
+    @media (max-width: 700px) {
+      nav { padding: .9rem 1rem; flex-wrap: wrap; gap: .8rem; }
+      .nav-phone { display: none; }
+      .nav-right { width: 100%; justify-content: center; }
+      .nav-agendar { width: 100%; text-align: center; }
+      .hero { min-height: auto; }
+      .hero-left { padding: 4.5rem 1.5rem 3rem; }
+      .hero-left::after { display: none; }
+      .hero-ctas { flex-direction: column; }
+      .btn-warm, .btn-out-dark { width: 100%; text-align: center; }
+      .hero-trust { flex-direction: column; gap: .8rem; }
+      .section, .equipe, .faq, .cta { padding: 3.5rem 1.25rem; }
+      .cta-grid { flex-direction: column; }
+      .cta-opt { width: 100%; }
+    }
   </style>
 </head>
 <body>
