@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Bem Estar Integrado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Newsreader:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6d28d9;
+      --purple-dark: #4c1d95;
+      --purple-light: #f5f3ff;
+      --teal: #0d9488;
+      --amber: #d97706;
+      --ink: #1e1b4b;
+      --gray: #6b7280;
+      --white: #ffffff;
+    }
+    body { font-family: 'Sora', sans-serif; background: #fafafa; color: var(--ink); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: white;
+      border-bottom: 1px solid #ede9fe;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo-pill {
+      display: flex; align-items: center; gap: .7rem;
+      text-decoration: none;
+    }
+    .logo-pill-icon {
+      background: linear-gradient(135deg, var(--purple), var(--teal));
+      color: white; width: 38px; height: 38px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .logo-pill-text { font-weight: 700; font-size: 1rem; color: var(--ink); line-height: 1.1; }
+    .logo-pill-sub { font-size: .65rem; font-weight: 400; color: var(--gray); }
+    .nav-pills { display: flex; gap: .3rem; }
+    .nav-pill {
+      padding: .4rem 1rem; border-radius: 20px; font-size: .82rem;
+      text-decoration: none; color: var(--gray); transition: all .2s;
+    }
+    .nav-pill:hover { background: var(--purple-light); color: var(--purple); }
+    .nav-pill.active { background: var(--purple-light); color: var(--purple); font-weight: 600; }
+    .nav-cta {
+      background: var(--purple); color: white;
+      padding: .55rem 1.4rem; border-radius: 8px;
+      text-decoration: none; font-size: .85rem; font-weight: 600;
+      transition: background .2s; display: flex; align-items: center; gap: .4rem;
+    }
+    .nav-cta:hover { background: var(--purple-dark); }
+
+    /* HERO */
+    .hero {
+      min-height: 88vh; display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 4rem;
+      background: linear-gradient(135deg, #faf5ff 0%, #f0fdf4 50%, #fff7ed 100%);
+      position: relative; gap: 3rem;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236d28d9' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .hero-tag {
+      padding: .35rem .9rem; border-radius: 20px; font-size: .72rem; font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .tag-purple { background: #ede9fe; color: var(--purple); }
+    .tag-teal { background: #ccfbf1; color: var(--teal); }
+    .tag-amber { background: #fef3c7; color: var(--amber); }
+    h1 {
+      font-family: 'Newsreader', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.1; margin-bottom: 1.5rem;
+      font-weight: 300; font-style: italic;
+      color: var(--ink);
+    }
+    h1 strong { font-weight: 700; font-style: normal; }
+    .hero-desc { font-size: .95rem; color: var(--gray); line-height: 1.8; margin-bottom: 2.5rem; max-width: 500px; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-purple {
+      background: var(--purple); color: white;
+      padding: .85rem 2rem; border-radius: 10px; text-decoration: none;
+      font-weight: 600; font-size: .9rem; transition: all .2s;
+    }
+    .btn-purple:hover { background: var(--purple-dark); transform: translateY(-2px); }
+    .btn-out {
+      border: 2px solid var(--purple); color: var(--purple);
+      padding: .85rem 2rem; border-radius: 10px; text-decoration: none;
+      font-weight: 600; font-size: .9rem; transition: all .2s;
+    }
+    .btn-out:hover { background: var(--purple-light); }
+
+    /* HERO CARDS */
+    .hero-right { display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 1; }
+    .spec-card {
+      background: white; border-radius: 14px; padding: 1.4rem 1.6rem;
+      display: flex; align-items: center; gap: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      transition: transform .2s; cursor: default;
+    }
+    .spec-card:hover { transform: translateX(4px); }
+    .spec-card-icon {
+      width: 50px; height: 50px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+    }
+    .spec-card-info strong { display: block; font-size: .9rem; margin-bottom: .2rem; }
+    .spec-card-info span { font-size: .78rem; color: var(--gray); }
+    .spec-card-avail {
+      margin-left: auto; font-size: .72rem;
+      padding: .3rem .7rem; border-radius: 20px;
+    }
+    .avail-yes { background: #dcfce7; color: #166534; }
+    .avail-soon { background: #fef3c7; color: #92400e; }
+
+    /* ESPECIALISTAS */
+    .section { padding: 5rem 4rem; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .s-label {
+      display: inline-block;
+      background: var(--purple-light); color: var(--purple);
+      padding: .3rem .9rem; border-radius: 20px;
+      font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+      margin-bottom: .8rem;
+    }
+    h2 { font-family: 'Newsreader', serif; font-size: 2.4rem; font-weight: 300; font-style: italic; margin-bottom: .5rem; }
+    .s-sub { font-size: .9rem; color: var(--gray); }
+
+    .prof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+    .prof-card {
+      background: white; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,.05);
+      transition: all .25s;
+    }
+    .prof-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+    .prof-color { height: 100px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+    .prof-body { padding: 1.4rem; }
+    .prof-name { font-weight: 700; font-size: .95rem; margin-bottom: .2rem; }
+    .prof-spec { font-size: .75rem; color: var(--purple); font-weight: 600; margin-bottom: .6rem; }
+    .prof-crm { font-size: .7rem; color: var(--gray); }
+    .prof-btn {
+      display: block; margin-top: 1rem; text-align: center;
+      background: var(--purple-light); color: var(--purple);
+      padding: .5rem; border-radius: 8px;
+      text-decoration: none; font-size: .78rem; font-weight: 600;
+      transition: all .2s;
+    }
+    .prof-btn:hover { background: var(--purple); color: white; }
+
+    /* CONVENIOS */
+    .conv { background: var(--ink); padding: 3.5rem 4rem; }
+    .conv-inner { display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+    .conv-left h3 { font-family: 'Newsreader', serif; font-size: 1.8rem; color: white; font-style: italic; }
+    .conv-left p { color: rgba(255,255,255,.5); font-size: .85rem; margin-top: .4rem; }
+    .conv-list { display: flex; gap: 1rem; flex-wrap: wrap; flex: 1; }
+    .conv-pill {
+      background: rgba(255,255,255,.08); color: rgba(255,255,255,.7);
+      padding: .5rem 1.2rem; border-radius: 20px; font-size: .8rem;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    /* ESTRUTURA */
+    .struct { background: white; }
+    .struct-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .struct-card {
+      border: 1px solid #ede9fe; border-radius: 14px; padding: 2rem;
+      background: linear-gradient(135deg, #faf5ff, #f5f3ff);
+    }
+    .struct-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .struct-title { font-weight: 700; font-size: .95rem; margin-bottom: .5rem; }
+    .struct-desc { font-size: .83rem; color: var(--gray); line-height: 1.7; }
+
+    /* AGENDAMENTO */
+    .sched {
+      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+      padding: 5rem 4rem; text-align: center; color: white;
+    }
+    .sched h2 { color: white; font-style: normal; font-weight: 700; margin-bottom: 1rem; }
+    .sched p { color: rgba(255,255,255,.7); margin-bottom: 2rem; }
+    .sched-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 600px; margin: 0 auto 2rem; }
+    .sched-opt {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 10px; padding: 1.2rem; cursor: pointer;
+      transition: all .2s; text-decoration: none; color: white;
+    }
+    .sched-opt:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); }
+    .sched-opt-icon { font-size: 1.5rem; margin-bottom: .4rem; }
+    .sched-opt-label { font-size: .78rem; font-weight: 600; }
+
+    footer {
+      background: #1a0050; color: rgba(255,255,255,.35); text-align: center;
+      padding: 2rem; font-size: .78rem;
+    }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    @media (max-width: 900px) {
+      nav { padding: 1rem; }
+      .hero { grid-template-columns: 1fr; padding: 2rem; }
+      .section { padding: 4rem 1.5rem; }
+      .prof-grid { grid-template-columns: 1fr 1fr; }
+      .struct-grid { grid-template-columns: 1fr; }
+      .sched-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo-pill" href="#">
+    <div class="logo-pill-icon">🌿</div>
+    <div>
+      <div class="logo-pill-text">Bem Estar Integrado</div>
+      <div class="logo-pill-sub">Clínica Multiprofissional</div>
+    </div>
+  </a>
+  <div class="nav-pills">
+    <a href="#" class="nav-pill active">Início</a>
+    <a href="#" class="nav-pill">Especialistas</a>
+    <a href="#" class="nav-pill">Convênios</a>
+    <a href="#" class="nav-pill">Estrutura</a>
+    <a href="#" class="nav-pill">Contato</a>
+  </div>
+  <a href="#" class="nav-cta">📅 Agendar</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tags">
+      <span class="hero-tag tag-purple">Cardiologia</span>
+      <span class="hero-tag tag-teal">Ortopedia</span>
+      <span class="hero-tag tag-amber">Pediatria</span>
+      <span class="hero-tag tag-purple">Neurologia</span>
+      <span class="hero-tag tag-teal">Dermatologia</span>
+      <span class="hero-tag tag-amber">+ 8 especialidades</span>
+    </div>
+    <h1>Toda a saúde<br>da sua família <strong>em um só lugar</strong></h1>
+    <p class="hero-desc">
+      Atendimento integrado com mais de 15 especialistas. Ambiente acolhedor, tecnologia avançada e cuidado humanizado para você e sua família em SJC.
+    </p>
+    <div class="hero-btns">
+      <a href="#" class="btn-purple">Agendar Consulta</a>
+      <a href="#" class="btn-out">Ver Especialistas</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="spec-card">
+      <div class="spec-card-icon" style="background:#ede9fe;">❤️</div>
+      <div class="spec-card-info">
+        <strong>Cardiologia</strong>
+        <span>Dra. Amanda Costa — CRM 45678</span>
+      </div>
+      <div class="spec-card-avail avail-yes">● Hoje</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-icon" style="background:#f0fdf4;">🦴</div>
+      <div class="spec-card-info">
+        <strong>Ortopedia</strong>
+        <span>Dr. Paulo Henrique — CRM 32145</span>
+      </div>
+      <div class="spec-card-avail avail-yes">● Hoje</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-icon" style="background:#fef3c7;">👶</div>
+      <div class="spec-card-info">
+        <strong>Pediatria</strong>
+        <span>Dra. Fernanda Lima — CRM 67890</span>
+      </div>
+      <div class="spec-card-avail avail-soon">Amanhã</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-icon" style="background:#f0f9ff;">🧠</div>
+      <div class="spec-card-info">
+        <strong>Neurologia</strong>
+        <span>Dr. Ricardo Souza — CRM 11234</span>
+      </div>
+      <div class="spec-card-avail avail-yes">● Hoje</div>
+    </div>
+    <div class="spec-card" style="background:linear-gradient(135deg,#ede9fe,#f5f3ff);">
+      <div style="font-size:.85rem;font-weight:600;color:var(--purple);">+11 especialidades disponíveis</div>
+      <a href="#" style="margin-left:auto;background:var(--purple);color:white;padding:.4rem 1rem;border-radius:8px;text-decoration:none;font-size:.78rem;font-weight:600;">Ver todas →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALISTAS -->
+<section class="section">
+  <div class="section-header">
+    <div class="s-label">Nossa Equipe</div>
+    <h2>Especialistas dedicados<br>a você</h2>
+    <p class="s-sub">Profissionais selecionados com rigorosos critérios de qualidade e humanização</p>
+  </div>
+  <div class="prof-grid">
+    <div class="prof-card">
+      <div class="prof-color" style="background:linear-gradient(135deg,#ede9fe,#c4b5fd);">👩‍⚕️</div>
+      <div class="prof-body">
+        <div class="prof-name">Dra. Amanda Costa</div>
+        <div class="prof-spec">Cardiologia</div>
+        <div class="prof-crm">CRM/SP 45678</div>
+        <a href="#" class="prof-btn">Agendar</a>
+      </div>
+    </div>
+    <div class="prof-card">
+      <div class="prof-color" style="background:linear-gradient(135deg,#dcfce7,#86efac);">👨‍⚕️</div>
+      <div class="prof-body">
+        <div class="prof-name">Dr. Paulo Henrique</div>
+        <div class="prof-spec">Ortopedia</div>
+        <div class="prof-crm">CRM/SP 32145</div>
+        <a href="#" class="prof-btn">Agendar</a>
+      </div>
+    </div>
+    <div class="prof-card">
+      <div class="prof-color" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">👩‍⚕️</div>
+      <div class="prof-body">
+        <div class="prof-name">Dra. Fernanda Lima</div>
+        <div class="prof-spec">Pediatria</div>
+        <div class="prof-crm">CRM/SP 67890</div>
+        <a href="#" class="prof-btn">Agendar</a>
+      </div>
+    </div>
+    <div class="prof-card">
+      <div class="prof-color" style="background:linear-gradient(135deg,#e0f2fe,#7dd3fc);">👨‍⚕️</div>
+      <div class="prof-body">
+        <div class="prof-name">Dr. Ricardo Souza</div>
+        <div class="prof-spec">Neurologia</div>
+        <div class="prof-crm">CRM/SP 11234</div>
+        <a href="#" class="prof-btn">Agendar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONVENIOS -->
+<section class="conv">
+  <div class="conv-inner">
+    <div class="conv-left">
+      <h3>Convênios aceitos</h3>
+      <p>Trabalhamos com os principais planos de saúde</p>
+    </div>
+    <div class="conv-list">
+      <div class="conv-pill">Unimed</div>
+      <div class="conv-pill">Bradesco Saúde</div>
+      <div class="conv-pill">SulAmérica</div>
+      <div class="conv-pill">Amil</div>
+      <div class="conv-pill">Porto Seguro</div>
+      <div class="conv-pill">NotreDame</div>
+      <div class="conv-pill">Hapvida</div>
+      <div class="conv-pill">+ 20 outros</div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRUTURA -->
+<section class="section struct">
+  <div class="section-header">
+    <div class="s-label">Nossa Estrutura</div>
+    <h2>Ambiente pensado<br>para seu conforto</h2>
+  </div>
+  <div class="struct-grid">
+    <div class="struct-card">
+      <div class="struct-icon">🏥</div>
+      <div class="struct-title">15 Consultórios</div>
+      <p class="struct-desc">Espaços privativos, climatizados e modernamente equipados para cada especialidade.</p>
+    </div>
+    <div class="struct-card">
+      <div class="struct-icon">🔬</div>
+      <div class="struct-title">Laboratório Integrado</div>
+      <p class="struct-desc">Coleta de exames laboratoriais no próprio local, com resultados em até 24h.</p>
+    </div>
+    <div class="struct-card">
+      <div class="struct-icon">📱</div>
+      <div class="struct-title">Agendamento Digital</div>
+      <p class="struct-desc">Agende pelo app, WhatsApp ou telefone. Lembretes automáticos para suas consultas.</p>
+    </div>
+    <div class="struct-card">
+      <div class="struct-icon">♿</div>
+      <div class="struct-title">Acessibilidade Total</div>
+      <p class="struct-desc">Estrutura 100% acessível com elevadores, rampas e banheiros adaptados.</p>
+    </div>
+    <div class="struct-card">
+      <div class="struct-icon">🅿️</div>
+      <div class="struct-title">Estacionamento</div>
+      <p class="struct-desc">Estacionamento próprio e gratuito para todos os pacientes em atendimento.</p>
+    </div>
+    <div class="struct-card">
+      <div class="struct-icon">☕</div>
+      <div class="struct-title">Sala de Espera Premium</div>
+      <p class="struct-desc">Ambiente aconchegante com café, Wi-Fi gratuito e área kids para os pequenos.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sched">
+  <h2>Como prefere agendar?</h2>
+  <p>Escolha o canal mais conveniente para você</p>
+  <div class="sched-grid">
+    <a class="sched-opt" href="#">
+      <div class="sched-opt-icon">💬</div>
+      <div class="sched-opt-label">WhatsApp</div>
+    </a>
+    <a class="sched-opt" href="#">
+      <div class="sched-opt-icon">🌐</div>
+      <div class="sched-opt-label">Online</div>
+    </a>
+    <a class="sched-opt" href="#">
+      <div class="sched-opt-icon">📞</div>
+      <div class="sched-opt-label">Telefone</div>
+    </a>
+  </div>
+  <a href="#" class="btn-purple" style="display:inline-block;">Ver horários disponíveis →</a>
+</section>
+
+<footer>
+  <p>Clínica Bem Estar Integrado · Av. dos Trabalhadores, 456 · SJC — SP · (12) 3333-4444</p>
+  <p style="margin-top:.4rem;"><a href="#">Política de Privacidade</a> · <a href="#">LGPD</a> · <a href="#">Trabalhe Conosco</a></p>
+  <p style="margin-top:1.5rem;font-size:.7rem;opacity:.4;">Site desenvolvido por <a href="../index.html">Leandro Ferreira</a></p>
+</footer>
+
+</body>
+</html>

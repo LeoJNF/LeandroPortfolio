@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Renova Skin — Dermatologia & Estética Médica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blush: #fdf2f2;
+      --rose: #be123c;
+      --rose-mid: #e11d48;
+      --rose-light: #fce7f3;
+      --rose-dark: #881337;
+      --mocha: #78350f;
+      --sand: #fef9f5;
+      --ink: #1c1917;
+      --gray: #78716c;
+      --border: #f0e6e6;
+    }
+    body { font-family: 'Jost', sans-serif; background: var(--sand); color: var(--ink); }
+
+    /* NAV */
+    nav {
+      padding: 1.2rem 5rem; display: flex; align-items: center; justify-content: space-between;
+      background: white; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 99;
+    }
+    .logo-script {
+      font-family: 'Bodoni Moda', serif; font-style: italic;
+      font-size: 1.5rem; color: var(--rose-dark); text-decoration: none; line-height: 1;
+    }
+    .logo-tag { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); margin-top: .1rem; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: .82rem; color: var(--gray); text-decoration: none; letter-spacing: .05em; transition: color .2s; }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-book {
+      background: var(--rose); color: white;
+      padding: .55rem 1.5rem; border-radius: 4px;
+      text-decoration: none; font-size: .82rem; letter-spacing: .05em;
+      transition: background .2s;
+    }
+    .nav-book:hover { background: var(--rose-dark); }
+
+    /* HERO */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 90vh;
+    }
+    .hero-left {
+      background: var(--rose-dark);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-left::before {
+      content: '✦'; position: absolute; top: 3rem; right: 3rem;
+      font-size: 8rem; color: rgba(255,255,255,.05); line-height: 1;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to top, rgba(136,19,55,.95) 40%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-eyebrow { font-size: .68rem; letter-spacing: .25em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 1.2rem; }
+    h1 {
+      font-family: 'Bodoni Moda', serif; font-style: italic;
+      font-size: clamp(3rem, 5vw, 5rem); font-weight: 400;
+      color: white; line-height: 1.05; margin-bottom: 1.2rem;
+    }
+    h1 strong { font-style: normal; font-weight: 600; }
+    .hero-sub { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.8; margin-bottom: 2.5rem; max-width: 420px; }
+    .hero-btns { display: flex; gap: 1rem; }
+    .btn-white-solid {
+      background: white; color: var(--rose-dark);
+      padding: .85rem 2rem; border-radius: 4px; text-decoration: none;
+      font-size: .82rem; font-weight: 500; letter-spacing: .05em; transition: all .2s;
+    }
+    .btn-white-solid:hover { background: var(--rose-light); }
+    .btn-outline-w {
+      border: 1px solid rgba(255,255,255,.35); color: white;
+      padding: .85rem 2rem; border-radius: 4px; text-decoration: none;
+      font-size: .82rem; letter-spacing: .05em; transition: all .2s;
+    }
+    .btn-outline-w:hover { border-color: white; }
+
+    .hero-right {
+      background: var(--blush);
+      display: flex; flex-direction: column;
+    }
+    .hero-right-top {
+      flex: 1; padding: 4rem;
+      background: linear-gradient(135deg, #fff5f7, #fce7f3);
+      display: flex; flex-direction: column; justify-content: center;
+      align-items: flex-start; gap: 1.5rem;
+    }
+    .badge-gold {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: #fef3c7; color: #92400e;
+      padding: .4rem 1rem; border-radius: 4px;
+      font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600;
+    }
+    .proc-list { display: flex; flex-direction: column; gap: .7rem; width: 100%; }
+    .proc-item {
+      background: white; border-radius: 8px; padding: 1rem 1.2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,.04);
+    }
+    .proc-name { font-size: .88rem; font-weight: 500; }
+    .proc-cat { font-size: .7rem; color: var(--gray); margin-top: .1rem; }
+    .proc-popular {
+      font-size: .65rem; background: var(--rose-light); color: var(--rose);
+      padding: .2rem .6rem; border-radius: 20px; font-weight: 600;
+    }
+    .hero-right-bottom {
+      padding: 2rem 4rem;
+      background: white; border-top: 1px solid var(--border);
+      display: flex; gap: 2rem;
+    }
+    .mini-stat { flex: 1; }
+    .mini-num { font-family: 'Bodoni Moda', serif; font-size: 1.8rem; color: var(--rose-dark); }
+    .mini-label { font-size: .7rem; color: var(--gray); margin-top: .1rem; }
+
+    /* TRATAMENTOS */
+    .section { padding: 6rem 5rem; }
+    h2 { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 2.8rem; font-weight: 400; line-height: 1.2; }
+    .s-tag {
+      display: inline-block; background: var(--rose-light); color: var(--rose);
+      padding: .3rem .9rem; border-radius: 4px; font-size: .68rem;
+      letter-spacing: .15em; text-transform: uppercase; font-weight: 600; margin-bottom: 1rem;
+    }
+    .trat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 3rem; }
+    .trat-cell {
+      background: white; padding: 2.5rem 2rem;
+      transition: background .2s; cursor: default;
+    }
+    .trat-cell:hover { background: var(--blush); }
+    .trat-cell-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+    .trat-cell-title { font-family: 'Bodoni Moda', serif; font-size: 1.2rem; margin-bottom: .5rem; }
+    .trat-cell-desc { font-size: .82rem; color: var(--gray); line-height: 1.7; }
+    .trat-cell-link {
+      display: inline-block; margin-top: 1rem;
+      font-size: .75rem; color: var(--rose); font-weight: 500;
+      text-decoration: none; letter-spacing: .05em;
+    }
+    .trat-cell-link:hover { text-decoration: underline; }
+
+    /* DRA */
+    .dra { background: white; padding: 6rem 5rem; }
+    .dra-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .dra-visual {
+      background: linear-gradient(135deg, var(--rose-dark), #4a0518);
+      border-radius: 12px; padding: 3.5rem;
+      color: white; position: relative; overflow: hidden;
+    }
+    .dra-visual::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.08) 0%, transparent 70%);
+    }
+    .dra-name { font-family: 'Bodoni Moda', serif; font-size: 2rem; font-style: italic; margin-bottom: .2rem; }
+    .dra-spec { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 2rem; }
+    .dra-div { height: 1px; background: rgba(255,255,255,.1); margin-bottom: 1.8rem; }
+    .dra-creds { display: flex; flex-direction: column; gap: .8rem; }
+    .dra-cred { display: flex; gap: .6rem; align-items: flex-start; }
+    .dra-cred-icon { color: #fda4af; flex-shrink: 0; margin-top: .1rem; }
+    .dra-cred-text { font-size: .82rem; color: rgba(255,255,255,.7); line-height: 1.5; }
+    .dra-cred-text strong { color: white; display: block; }
+    .dra-content p { font-size: .92rem; color: var(--gray); line-height: 1.8; margin-bottom: 1rem; }
+    .dra-content .s-tag { margin-top: 1.5rem; }
+
+    /* ANTES DEPOIS */
+    .results { background: var(--blush); padding: 5rem; text-align: center; }
+    .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 3rem; }
+    .result-card { background: white; border-radius: 8px; overflow: hidden; }
+    .result-img {
+      height: 160px; background: linear-gradient(135deg, #fce7f3, #fda4af);
+      display: flex; align-items: center; justify-content: center; font-size: 3rem;
+    }
+    .result-info { padding: 1rem 1.2rem; text-align: left; }
+    .result-proc { font-size: .78rem; font-weight: 600; color: var(--rose); margin-bottom: .2rem; }
+    .result-desc { font-size: .75rem; color: var(--gray); line-height: 1.5; }
+
+    /* AGENDAR */
+    .agendar { padding: 5rem; background: var(--rose-dark); color: white; text-align: center; }
+    .agendar h2 { color: white; font-style: italic; margin-bottom: .8rem; }
+    .agendar p { color: rgba(255,255,255,.6); margin-bottom: 2.5rem; }
+    .ag-options { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .ag-opt {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px; padding: 1.5rem 2rem; text-align: center;
+      text-decoration: none; color: white; min-width: 160px;
+      transition: all .2s;
+    }
+    .ag-opt:hover { background: rgba(255,255,255,.15); transform: translateY(-4px); }
+    .ag-opt-icon { font-size: 2rem; margin-bottom: .6rem; }
+    .ag-opt-label { font-size: .8rem; font-weight: 500; }
+    .ag-opt-sub { font-size: .7rem; color: rgba(255,255,255,.5); margin-top: .2rem; }
+
+    footer { background: #3b0014; color: rgba(255,255,255,.35); text-align: center; padding: 2rem; font-size: .78rem; }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    @media (max-width: 900px) {
+      nav { padding: 1rem; }
+      .hero { grid-template-columns: 1fr; }
+      .section, .dra { padding: 4rem 1.5rem; }
+      .dra-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .trat-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr 1fr; }
+      .results, .agendar { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#">
+    <div class="logo-script">Renova Skin</div>
+    <div class="logo-tag">Dermatologia & Estética Médica</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Tratamentos</a></li>
+    <li><a href="#">Especialista</a></li>
+    <li><a href="#">Resultados</a></li>
+    <li><a href="#">Convênios</a></li>
+    <li><a href="#">Contato</a></li>
+  </ul>
+  <a href="#" class="nav-book">Agendar Avaliação</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-content">
+      <div class="hero-eyebrow">São José dos Campos · CRM/SP 98765</div>
+      <h1>Sua pele<br>merece o <strong>melhor</strong></h1>
+      <p class="hero-sub">Tratamentos dermatológicos e estéticos com tecnologia de ponta e abordagem médica personalizada. Ciência aplicada ao cuidado da sua pele.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-white-solid">Agendar Avaliação</a>
+        <a href="#" class="btn-outline-w">Ver Tratamentos</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-top">
+      <div class="badge-gold">✨ Mais de 2.000 procedimentos realizados</div>
+      <div class="proc-list">
+        <div class="proc-item">
+          <div>
+            <div class="proc-name">Toxina Botulínica</div>
+            <div class="proc-cat">Estética Médica</div>
+          </div>
+          <div class="proc-popular">Mais popular</div>
+        </div>
+        <div class="proc-item">
+          <div>
+            <div class="proc-name">Preenchimento Facial</div>
+            <div class="proc-cat">Ácido Hialurônico</div>
+          </div>
+          <div class="proc-popular">Destaque</div>
+        </div>
+        <div class="proc-item">
+          <div>
+            <div class="proc-name">Peeling Químico</div>
+            <div class="proc-cat">Renovação Celular</div>
+          </div>
+        </div>
+        <div class="proc-item">
+          <div>
+            <div class="proc-name">Laser CO₂</div>
+            <div class="proc-cat">Rejuvenescimento</div>
+          </div>
+          <div class="proc-popular">Premium</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right-bottom">
+      <div class="mini-stat">
+        <div class="mini-num">15+</div>
+        <div class="mini-label">Anos de experiência</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-num">98%</div>
+        <div class="mini-label">Satisfação</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-num">30+</div>
+        <div class="mini-label">Tratamentos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRATAMENTOS -->
+<section class="section">
+  <div class="s-tag">Tratamentos</div>
+  <h2>Soluções completas<br>para cada necessidade</h2>
+  <div class="trat-grid">
+    <div class="trat-cell">
+      <div class="trat-cell-icon">💉</div>
+      <div class="trat-cell-title">Toxina Botulínica</div>
+      <p class="trat-cell-desc">Suavização de rugas de expressão com resultados naturais e duradouros. Técnica personalizada para cada paciente.</p>
+      <a href="#" class="trat-cell-link">Saiba mais →</a>
+    </div>
+    <div class="trat-cell">
+      <div class="trat-cell-icon">✨</div>
+      <div class="trat-cell-title">Preenchimento Facial</div>
+      <p class="trat-cell-desc">Restauração de volume e contornos faciais com ácido hialurônico de última geração.</p>
+      <a href="#" class="trat-cell-link">Saiba mais →</a>
+    </div>
+    <div class="trat-cell">
+      <div class="trat-cell-icon">🔆</div>
+      <div class="trat-cell-title">Laser & Luz Intensa</div>
+      <p class="trat-cell-desc">Tratamentos para manchas, melasma, vasinhos e rejuvenescimento cutâneo com tecnologia laser.</p>
+      <a href="#" class="trat-cell-link">Saiba mais →</a>
+    </div>
+    <div class="trat-cell">
+      <div class="trat-cell-icon">🧴</div>
+      <div class="trat-cell-title">Dermatologia Clínica</div>
+      <p class="trat-cell-desc">Diagnóstico e tratamento de acne, rosácea, psoríase, dermatite e outras condições dermatológicas.</p>
+      <a href="#" class="trat-cell-link">Saiba mais →</a>
+    </div>
+    <div class="trat-cell">
+      <div class="trat-cell-icon">💧</div>
+      <div class="trat-cell-title">Bioestimuladores</div>
+      <p class="trat-cell-desc">Estímulo natural da produção de colágeno com Sculptra, Radiesse e outros bioestimuladores.</p>
+      <a href="#" class="trat-cell-link">Saiba mais →</a>
+    </div>
+    <div class="trat-cell">
+      <div class="trat-cell-icon">🔬</div>
+      <div class="trat-cell-title">Mapeamento de Nevos</div>
+      <p class="trat-cell-desc">Avaliação completa e digitalizada de pintas e manchas para prevenção do câncer de pele.</p>
+      <a href="#" class="trat-cell-link">Saiba mais →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DRA -->
+<section class="dra">
+  <div class="dra-inner">
+    <div class="dra-visual">
+      <div class="dra-name">Dra. Patricia Ramos</div>
+      <div class="dra-spec">Dermatologista · Estética Médica</div>
+      <div class="dra-div"></div>
+      <div class="dra-creds">
+        <div class="dra-cred">
+          <span class="dra-cred-icon">✦</span>
+          <div class="dra-cred-text">
+            <strong>CRM/SP 98765</strong>
+            Conselho Regional de Medicina de SP
+          </div>
+        </div>
+        <div class="dra-cred">
+          <span class="dra-cred-icon">✦</span>
+          <div class="dra-cred-text">
+            <strong>Membro da SBD</strong>
+            Sociedade Brasileira de Dermatologia
+          </div>
+        </div>
+        <div class="dra-cred">
+          <span class="dra-cred-icon">✦</span>
+          <div class="dra-cred-text">
+            <strong>Fellowship em Paris</strong>
+            Institut Pasteur — Dermatologia Estética
+          </div>
+        </div>
+        <div class="dra-cred">
+          <span class="dra-cred-icon">✦</span>
+          <div class="dra-cred-text">
+            <strong>15 anos de experiência</strong>
+            Mais de 2.000 procedimentos realizados
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dra-content">
+      <div class="s-tag">A Especialista</div>
+      <h2>Comprometida com a saúde<br>e beleza da sua pele</h2>
+      <p style="margin-top:1.5rem;">
+        Formada pela Faculdade de Medicina da UNICAMP, com residência em Dermatologia no Hospital das Clínicas de SP e especialização em Estética Médica em Paris, a Dra. Patricia traz uma visão única que alia saúde à beleza.
+      </p>
+      <p>
+        Acredita que cada paciente é único e que os tratamentos devem respeitar a naturalidade de cada rosto, priorizando resultados harmoniosos e discretos.
+      </p>
+      <a href="#" class="btn-white-solid" style="background:var(--rose);color:white;display:inline-block;margin-top:2rem;padding:.8rem 2rem;border-radius:4px;text-decoration:none;font-size:.85rem;">Agendar com a Dra. Patricia</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section class="results">
+  <div class="s-tag">Resultados</div>
+  <h2>Transformações reais,<br>sempre com naturalidade</h2>
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="result-img">✨</div>
+      <div class="result-info">
+        <div class="result-proc">Toxina Botulínica</div>
+        <div class="result-desc">Suavização de linhas de expressão — resultado 30 dias após</div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-img" style="background:linear-gradient(135deg,#f3e8ff,#e9d5ff);">💧</div>
+      <div class="result-info">
+        <div class="result-proc">Preenchimento Labial</div>
+        <div class="result-desc">Harmonização labial com ácido hialurônico</div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-img" style="background:linear-gradient(135deg,#fef9c3,#fde68a);">🔆</div>
+      <div class="result-info">
+        <div class="result-proc">Laser para Manchas</div>
+        <div class="result-desc">Tratamento de melasma — 3 sessões</div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-img" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">🧴</div>
+      <div class="result-info">
+        <div class="result-proc">Tratamento de Acne</div>
+        <div class="result-desc">Protocolo personalizado — 60 dias de tratamento</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="agendar">
+  <h2>Agende sua avaliação</h2>
+  <p>Primeira consulta com avaliação completa da sua pele. Sem compromisso.</p>
+  <div class="ag-options">
+    <a href="#" class="ag-opt">
+      <div class="ag-opt-icon">💬</div>
+      <div class="ag-opt-label">WhatsApp</div>
+      <div class="ag-opt-sub">Atendimento rápido</div>
+    </a>
+    <a href="#" class="ag-opt">
+      <div class="ag-opt-icon">📅</div>
+      <div class="ag-opt-label">Agendamento Online</div>
+      <div class="ag-opt-sub">Escolha data e hora</div>
+    </a>
+    <a href="#" class="ag-opt">
+      <div class="ag-opt-icon">📍</div>
+      <div class="ag-opt-label">Presencial</div>
+      <div class="ag-opt-sub">Jardim Aquarius · SJC</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Renova Skin · Dra. Patricia Ramos · CRM/SP 98765 · Av. Andrômeda, 2100 · SJC — SP</p>
+  <p style="margin-top:.4rem;"><a href="#">Política de Privacidade</a> · <a href="#">LGPD</a></p>
+  <p style="margin-top:1.5rem;font-size:.7rem;opacity:.4;">Site desenvolvido por <a href="../index.html">Leandro Ferreira</a></p>
+</footer>
+
+</body>
+</html>

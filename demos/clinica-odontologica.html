@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Smile — Odontologia Estética</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --amber: #b45309;
+      --amber-light: #fef3c7;
+      --amber-pale: #fffbeb;
+      --warm: #d97706;
+      --cream: #fffef9;
+      --sand: #faf5eb;
+      --ink: #1c1917;
+      --muted: #78716c;
+      --border: #e7e0d2;
+    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--cream); color: var(--ink); }
+
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      text-transform: none;
+      letter-spacing: normal;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+    .icon-inline { font-size: 1rem; }
+
+    /* NAV */
+    nav {
+      padding: 1.2rem 5rem; display: flex; align-items: center; justify-content: space-between;
+      background: var(--ink); position: sticky; top: 0; z-index: 99;
+    }
+    .logo-tooth { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
+    .logo-icon-sq {
+      width: 40px; height: 40px; background: var(--warm);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white;
+    }
+    .logo-t { font-family: 'Fraunces', serif; font-size: 1.2rem; color: white; font-weight: 300; line-height: 1.1; }
+    .logo-t span { color: var(--warm); }
+    .logo-ts { font-size: .65rem; color: rgba(255,255,255,.4); letter-spacing: .1em; }
+    .nav-center { display: flex; gap: 2.5rem; }
+    .nav-center a { color: rgba(255,255,255,.55); text-decoration: none; font-size: .82rem; transition: color .2s; }
+    .nav-center a:hover { color: white; }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-phone { font-size: .8rem; color: rgba(255,255,255,.5); }
+    .nav-agendar {
+      background: var(--warm); color: white;
+      padding: .55rem 1.3rem; border-radius: 6px;
+      text-decoration: none; font-size: .82rem; font-weight: 600; transition: background .2s;
+    }
+    .nav-agendar:hover { background: var(--amber); }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh; display: grid;
+      grid-template-columns: 1fr 520px;
+      background: var(--sand);
+    }
+    .hero-left {
+      padding: 6rem 4rem 5rem 5rem;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+    }
+    .hero-left::after {
+      content: 'medical_services';
+      position: absolute; right: -40px; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Material Symbols Outlined';
+      font-size: 300px; opacity: .04; line-height: 1;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: var(--amber-light); color: var(--amber);
+      padding: .4rem 1rem; border-radius: 20px; font-size: .72rem; font-weight: 600;
+      letter-spacing: .05em; margin-bottom: 2rem; width: fit-content;
+    }
+    h1 {
+      font-family: 'Fraunces', serif; font-weight: 300;
+      font-size: clamp(3rem, 5vw, 4.8rem); line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--warm); }
+    .hero-desc { font-size: .95rem; color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; max-width: 480px; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-warm {
+      background: var(--warm); color: white;
+      padding: .9rem 2.2rem; border-radius: 8px; text-decoration: none;
+      font-weight: 600; font-size: .9rem; transition: all .2s;
+    }
+    .btn-warm:hover { background: var(--amber); transform: translateY(-2px); }
+    .btn-out-dark {
+      border: 2px solid var(--ink); color: var(--ink);
+      padding: .9rem 2.2rem; border-radius: 8px; text-decoration: none;
+      font-weight: 600; font-size: .9rem; transition: all .2s;
+    }
+    .btn-out-dark:hover { background: var(--ink); color: white; }
+    .hero-trust { display: flex; gap: 2rem; margin-top: 3rem; }
+    .trust-item { display: flex; align-items: center; gap: .5rem; }
+    .trust-icon { font-size: 1rem; color: var(--warm); }
+    .trust-text { font-size: .78rem; color: var(--muted); }
+
+    /* HERO RIGHT */
+    .hero-right {
+      background: var(--ink); padding: 4rem 3rem;
+      display: flex; flex-direction: column; gap: 1.5rem; justify-content: center;
+    }
+    .hero-right-title { font-family: 'Fraunces', serif; font-size: 1.4rem; color: white; font-weight: 300; }
+    .treat-list { display: flex; flex-direction: column; gap: .8rem; }
+    .treat-item {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px; padding: 1.1rem 1.3rem;
+      display: flex; align-items: center; gap: 1rem;
+      transition: all .2s; cursor: default;
+    }
+    .treat-item:hover { background: rgba(217,119,6,.1); border-color: rgba(217,119,6,.3); }
+    .treat-emoji { font-size: 1.4rem; flex-shrink: 0; color: var(--warm); }
+    .treat-info { flex: 1; }
+    .treat-name { font-size: .9rem; color: white; font-weight: 500; }
+    .treat-desc { font-size: .72rem; color: rgba(255,255,255,.4); margin-top: .1rem; }
+    .treat-tag {
+      font-size: .65rem; padding: .2rem .6rem; border-radius: 20px;
+      background: rgba(217,119,6,.2); color: var(--warm); font-weight: 600;
+    }
+    .hero-right-cta {
+      background: var(--warm); color: white; text-align: center;
+      padding: 1.1rem; border-radius: 10px; font-weight: 600;
+      text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    }
+    .hero-right-cta:hover { background: var(--amber); }
+
+    /* SECTION */
+    .section { padding: 6rem 5rem; }
+    h2 { font-family: 'Fraunces', serif; font-size: 2.6rem; font-weight: 300; line-height: 1.2; }
+    h2 em { font-style: italic; color: var(--warm); }
+    .s-tag {
+      display: inline-block; background: var(--amber-light); color: var(--amber);
+      padding: .3rem .9rem; border-radius: 4px; font-size: .7rem;
+      letter-spacing: .12em; text-transform: uppercase; font-weight: 600; margin-bottom: .8rem;
+    }
+
+    /* SERVICOS */
+    .serv-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
+    .serv-list { display: flex; flex-direction: column; }
+    .serv-accordion {
+      border-bottom: 1px solid var(--border); padding: 1.5rem 0;
+      cursor: default; transition: all .2s;
+    }
+    .serv-acc-header { display: flex; align-items: center; gap: 1rem; justify-content: space-between; }
+    .serv-acc-left { display: flex; align-items: center; gap: 1rem; }
+    .serv-acc-icon {
+      width: 42px; height: 42px; background: var(--amber-light);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.2rem; flex-shrink: 0; color: var(--amber);
+    }
+    .serv-acc-name { font-weight: 600; font-size: .92rem; }
+    .serv-acc-cat { font-size: .72rem; color: var(--muted); }
+    .serv-acc-price { font-size: .8rem; color: var(--warm); font-weight: 600; white-space: nowrap; }
+    .serv-acc-desc { font-size: .82rem; color: var(--muted); line-height: 1.7; margin-top: .8rem; padding-left: 3.4rem; }
+
+    .serv-highlight {
+      background: var(--ink); border-radius: 14px; padding: 2.5rem;
+      color: white;
+    }
+    .sh-tag { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--warm); margin-bottom: 1rem; }
+    .sh-title { font-family: 'Fraunces', serif; font-size: 1.8rem; color: white; font-weight: 300; margin-bottom: 1.2rem; }
+    .sh-steps { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    .sh-step { display: flex; gap: .8rem; align-items: flex-start; }
+    .sh-step-num {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: var(--warm); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 700; color: white;
+    }
+    .sh-step-text { font-size: .83rem; color: rgba(255,255,255,.7); line-height: 1.5; }
+    .sh-step-text strong { color: white; display: block; margin-bottom: .1rem; }
+    .sh-before-after {
+      background: rgba(255,255,255,.06); border-radius: 8px; padding: 1.2rem;
+      display: flex; gap: 1rem; align-items: center;
+    }
+    .sh-side { flex: 1; text-align: center; }
+    .sh-side-emoji { font-size: 2.5rem; color: var(--warm); }
+    .sh-side-label { font-size: .65rem; color: rgba(255,255,255,.4); margin-top: .3rem; text-transform: uppercase; letter-spacing: .1em; }
+    .sh-arrow { font-size: 1.5rem; color: var(--warm); }
+
+    /* EQUIPE */
+    .equipe { background: var(--sand); padding: 6rem 5rem; }
+    .equipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .dr-card { background: white; border-radius: 12px; overflow: hidden; }
+    .dr-photo { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; color: var(--warm); }
+    .dr-body { padding: 1.5rem; }
+    .dr-name { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: .2rem; }
+    .dr-spec { font-size: .72rem; color: var(--warm); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; margin-bottom: .5rem; }
+    .dr-crm { font-size: .7rem; color: var(--muted); }
+    .dr-desc { font-size: .8rem; color: var(--muted); line-height: 1.6; margin-top: .8rem; }
+
+    /* FAQ */
+    .faq { padding: 6rem 5rem; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 3rem; }
+    .faq-item {
+      background: var(--sand); border-radius: 10px; padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    .faq-q { font-weight: 600; font-size: .88rem; margin-bottom: .6rem; }
+    .faq-a { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+
+    /* CTA */
+    .cta { background: var(--warm); padding: 5rem; text-align: center; color: white; }
+    .cta h2 { color: white; margin-bottom: .8rem; }
+    .cta p { color: rgba(255,255,255,.75); margin-bottom: 2.5rem; }
+    .cta-grid { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .cta-opt {
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+      border-radius: 10px; padding: 1.2rem 2rem; text-align: center;
+      text-decoration: none; color: white; transition: all .2s;
+    }
+    .cta-opt:hover { background: rgba(255,255,255,.25); transform: translateY(-3px); }
+    .cta-opt-icon { font-size: 1.8rem; margin-bottom: .4rem; }
+    .cta-opt-text { font-weight: 600; font-size: .85rem; }
+
+    footer { background: var(--ink); color: rgba(255,255,255,.35); text-align: center; padding: 2rem; font-size: .78rem; }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    @media (max-width: 900px) {
+      nav { padding: 1rem; }
+      .nav-center { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .section, .equipe, .faq, .cta { padding: 4rem 1.5rem; }
+      .serv-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+      .equipe-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo-tooth" href="#">
+    <div class="logo-icon-sq"><span class="material-symbols-outlined" aria-hidden="true">medical_services</span></div>
+    <div>
+      <div class="logo-t">Studio <span>Smile</span></div>
+      <div class="logo-ts">Odontologia Estética</div>
+    </div>
+  </a>
+  <div class="nav-center">
+    <a href="#">Tratamentos</a>
+    <a href="#">Equipe</a>
+    <a href="#">Tecnologia</a>
+    <a href="#">Convênios</a>
+    <a href="#">Localização</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-phone">(12) 3888-5555</div>
+    <a href="#" class="nav-agendar">Agendar</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-pill">
+      <span class="material-symbols-outlined icon-inline" aria-hidden="true">star</span>
+      4.9 · Mais de 500 avaliações no Google
+    </div>
+    <h1>O sorriso que<br>você sempre <em>quis</em></h1>
+    <p class="hero-desc">
+      Odontologia estética e reabilitadora com tecnologia digital, materiais premium e uma equipe apaixonada por transformar sorrisos e vidas em São José dos Campos.
+    </p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-warm">Agendar Avaliação Grátis</a>
+      <a href="#" class="btn-out-dark">Ver Transformações</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="material-symbols-outlined trust-icon" aria-hidden="true">check_circle</span>
+        <div class="trust-text">CRO/SP regulamentado</div>
+      </div>
+      <div class="trust-item">
+        <span class="material-symbols-outlined trust-icon" aria-hidden="true">check_circle</span>
+        <div class="trust-text">Materiais importados</div>
+      </div>
+      <div class="trust-item">
+        <span class="material-symbols-outlined trust-icon" aria-hidden="true">check_circle</span>
+        <div class="trust-text">Parcelamento em 12x</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-title">Tratamentos em destaque</div>
+    <div class="treat-list">
+      <div class="treat-item">
+        <div class="treat-emoji"><span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span></div>
+        <div class="treat-info">
+          <div class="treat-name">Lentes de Contato Dental</div>
+          <div class="treat-desc">Facetas ultra-finas de porcelana</div>
+        </div>
+        <div class="treat-tag">Mais buscado</div>
+      </div>
+      <div class="treat-item">
+        <div class="treat-emoji"><span class="material-symbols-outlined" aria-hidden="true">medical_services</span></div>
+        <div class="treat-info">
+          <div class="treat-name">Implante Dental</div>
+          <div class="treat-desc">Titânio com carga imediata</div>
+        </div>
+        <div class="treat-tag">Premium</div>
+      </div>
+      <div class="treat-item">
+        <div class="treat-emoji"><span class="material-symbols-outlined" aria-hidden="true">bolt</span></div>
+        <div class="treat-info">
+          <div class="treat-name">Clareamento LED</div>
+          <div class="treat-desc">Resultado em 1 sessão</div>
+        </div>
+        <div class="treat-tag">Rápido</div>
+      </div>
+      <div class="treat-item">
+        <div class="treat-emoji"><span class="material-symbols-outlined" aria-hidden="true">build</span></div>
+        <div class="treat-info">
+          <div class="treat-name">Ortodontia Invisível</div>
+          <div class="treat-desc">Alinhadores transparentes</div>
+        </div>
+        <div class="treat-tag">Discreet</div>
+      </div>
+    </div>
+    <a href="#" class="hero-right-cta"><span class="material-symbols-outlined" aria-hidden="true">event_available</span> Avaliação gratuita — Agende agora</a>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="section">
+  <div class="s-tag">Tratamentos</div>
+  <h2>Tudo para um sorriso <em>perfeito</em></h2>
+  <div class="serv-wrapper">
+    <div class="serv-list">
+      <div class="serv-accordion">
+        <div class="serv-acc-header">
+          <div class="serv-acc-left">
+            <div class="serv-acc-icon"><span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span></div>
+            <div>
+              <div class="serv-acc-name">Lentes de Contato Dental</div>
+              <div class="serv-acc-cat">Estética Avançada</div>
+            </div>
+          </div>
+          <div class="serv-acc-price">A partir de R$800/lente</div>
+        </div>
+        <p class="serv-acc-desc">Facetas de porcelana ultra-finas que transformam a aparência dos dentes sem desgaste excessivo. Resultado natural e duradouro.</p>
+      </div>
+      <div class="serv-accordion">
+        <div class="serv-acc-header">
+          <div class="serv-acc-left">
+            <div class="serv-acc-icon"><span class="material-symbols-outlined" aria-hidden="true">medical_services</span></div>
+            <div>
+              <div class="serv-acc-name">Implante Dental</div>
+              <div class="serv-acc-cat">Reabilitação Oral</div>
+            </div>
+          </div>
+          <div class="serv-acc-price">A partir de R$2.800</div>
+        </div>
+        <p class="serv-acc-desc">Reposição de dentes perdidos com implantes de titânio de alta qualidade. Funcionalidade e estética restauradas permanentemente.</p>
+      </div>
+      <div class="serv-accordion">
+        <div class="serv-acc-header">
+          <div class="serv-acc-left">
+            <div class="serv-acc-icon"><span class="material-symbols-outlined" aria-hidden="true">bolt</span></div>
+            <div>
+              <div class="serv-acc-name">Clareamento Dental LED</div>
+              <div class="serv-acc-cat">Estética Básica</div>
+            </div>
+          </div>
+          <div class="serv-acc-price">R$450 a R$800</div>
+        </div>
+        <p class="serv-acc-desc">Clareamento de consultório com LED de última geração. Resultado visível já na primeira sessão, com segurança e sem sensibilidade.</p>
+      </div>
+      <div class="serv-accordion">
+        <div class="serv-acc-header">
+          <div class="serv-acc-left">
+            <div class="serv-acc-icon"><span class="material-symbols-outlined" aria-hidden="true">build</span></div>
+            <div>
+              <div class="serv-acc-name">Ortodontia com Alinhadores</div>
+              <div class="serv-acc-cat">Ortodontia</div>
+            </div>
+          </div>
+          <div class="serv-acc-price">A partir de R$4.500</div>
+        </div>
+        <p class="serv-acc-desc">Correção de sorriso com aparelhos transparentes e invisíveis. Conforto, discrição e resultados previsíveis com tecnologia digital.</p>
+      </div>
+    </div>
+
+    <div class="serv-highlight">
+      <div class="sh-tag">Como funciona</div>
+      <div class="sh-title">Da consulta ao sorriso novo em 3 passos</div>
+      <div class="sh-steps">
+        <div class="sh-step">
+          <div class="sh-step-num">1</div>
+          <div class="sh-step-text">
+            <strong>Avaliação gratuita</strong>
+            Planejamento digital do seu novo sorriso com fotos e raio-X
+          </div>
+        </div>
+        <div class="sh-step">
+          <div class="sh-step-num">2</div>
+          <div class="sh-step-text">
+            <strong>Simulação digital</strong>
+            Veja o resultado antes de começar com nosso software de design
+          </div>
+        </div>
+        <div class="sh-step">
+          <div class="sh-step-num">3</div>
+          <div class="sh-step-text">
+            <strong>Execução & acompanhamento</strong>
+            Tratamento preciso com materiais premium e suporte completo
+          </div>
+        </div>
+      </div>
+      <div class="sh-before-after">
+        <div class="sh-side">
+          <div class="sh-side-emoji"><span class="material-symbols-outlined" aria-hidden="true">sentiment_neutral</span></div>
+          <div class="sh-side-label">Antes</div>
+        </div>
+        <div class="sh-arrow">→</div>
+        <div class="sh-side">
+          <div class="sh-side-emoji"><span class="material-symbols-outlined" aria-hidden="true">sentiment_very_satisfied</span></div>
+          <div class="sh-side-label">Depois</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section class="equipe">
+  <div class="s-tag">Nossa Equipe</div>
+  <h2>Especialistas apaixonados<br>por sorrisos</h2>
+  <div class="equipe-grid">
+    <div class="dr-card">
+      <div class="dr-photo" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">
+        <span class="material-symbols-outlined" aria-hidden="true">person</span>
+      </div>
+      <div class="dr-body">
+        <div class="dr-name">Dr. Felipe Andrade</div>
+        <div class="dr-spec">Odontologia Estética</div>
+        <div class="dr-crm">CRO/SP 78910</div>
+        <p class="dr-desc">Especialista em facetas e lentes de contato dental. Pós-graduado pela USP em Dentística.</p>
+      </div>
+    </div>
+    <div class="dr-card">
+      <div class="dr-photo" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">
+        <span class="material-symbols-outlined" aria-hidden="true">person</span>
+      </div>
+      <div class="dr-body">
+        <div class="dr-name">Dra. Camila Torres</div>
+        <div class="dr-spec">Implantodontia</div>
+        <div class="dr-crm">CRO/SP 45123</div>
+        <p class="dr-desc">Especialista em implantes e reabilitação oral. Mais de 800 implantes realizados com sucesso.</p>
+      </div>
+    </div>
+    <div class="dr-card">
+      <div class="dr-photo" style="background:linear-gradient(135deg,#e0e7ff,#c7d2fe);">
+        <span class="material-symbols-outlined" aria-hidden="true">person</span>
+      </div>
+      <div class="dr-body">
+        <div class="dr-name">Dr. Bruno Maia</div>
+        <div class="dr-spec">Ortodontia</div>
+        <div class="dr-crm">CRO/SP 67234</div>
+        <p class="dr-desc">Ortodontista certificado em Invisalign e outros sistemas de alinhadores transparentes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="s-tag">Dúvidas Frequentes</div>
+  <h2>Perguntas mais<br><em>comuns</em></h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">A avaliação é realmente gratuita?</div>
+      <p class="faq-a">Sim! Oferecemos uma consulta de avaliação completa sem custo. Você terá acesso ao diagnóstico e ao plano de tratamento sem compromisso.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Aceitam meu convênio odontológico?</div>
+      <p class="faq-a">Trabalhamos com Amil Dental, Bradesco Dental, OdontoPrev, Uniodonto e outros. Consulte nossa equipe para confirmar sua cobertura.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">O clareamento dói? Tem sensibilidade?</div>
+      <p class="faq-a">Com nosso protocolo moderno, a sensibilidade é mínima. Usamos géis dessensibilizantes antes e após o procedimento para máximo conforto.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Posso parcelar o tratamento?</div>
+      <p class="faq-a">Sim! Parcelamos em até 12x sem juros no cartão de crédito. Também temos condições especiais para tratamentos completos.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Quanto tempo dura o implante dental?</div>
+      <p class="faq-a">Com boa higiene bucal, implantes de titânio duram décadas — muitas vezes a vida toda. Oferecemos garantia e acompanhamento periódico.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Posso ver como ficará meu sorriso antes?</div>
+      <p class="faq-a">Sim! Fazemos um mock-up digital e físico antes de qualquer procedimento estético, para você aprovar o resultado antecipadamente.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Comece sua transformação hoje</h2>
+  <p>Avaliação gratuita · Sem compromisso · Resultado garantido</p>
+  <div class="cta-grid">
+    <a href="#" class="cta-opt">
+      <div class="cta-opt-icon"><span class="material-symbols-outlined" aria-hidden="true">chat</span></div>
+      <div class="cta-opt-text">WhatsApp</div>
+    </a>
+    <a href="#" class="cta-opt">
+      <div class="cta-opt-icon"><span class="material-symbols-outlined" aria-hidden="true">public</span></div>
+      <div class="cta-opt-text">Agendamento Online</div>
+    </a>
+    <a href="#" class="cta-opt">
+      <div class="cta-opt-icon"><span class="material-symbols-outlined" aria-hidden="true">call</span></div>
+      <div class="cta-opt-text">(12) 3888-5555</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Studio Smile Odontologia · CRO/SP 78910 · Av. Shishima Hifumi, 2911 · SJC — SP</p>
+  <p style="margin-top:.4rem;"><a href="#">Política de Privacidade</a> · <a href="#">LGPD</a></p>
+  <p style="margin-top:1.5rem;font-size:.7rem;opacity:.4;">Site desenvolvido por <a href="../main.html">Leandro Ferreira</a></p>
+</footer>
+
+</body>
+</html>

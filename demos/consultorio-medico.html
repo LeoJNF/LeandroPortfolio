@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Carlos Mendes — Clínica Geral</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #065f46;
+      --green-mid: #059669;
+      --green-light: #d1fae5;
+      --green-pale: #ecfdf5;
+      --ink: #111827;
+      --gray: #6b7280;
+      --white: #ffffff;
+      --border: #e5e7eb;
+    }
+    body { font-family: 'Outfit', sans-serif; background: var(--white); color: var(--ink); }
+
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      text-transform: none;
+      letter-spacing: normal;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      padding: 1.4rem 5rem; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border); background: white;
+      position: sticky; top: 0; z-index: 99;
+    }
+    .logo-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem; color: var(--ink); text-decoration: none;
+    }
+    .logo-crm { font-size: .7rem; color: var(--gray); margin-top: .1rem; letter-spacing: .05em; }
+    .nav-list { display: flex; gap: 2rem; list-style: none; }
+    .nav-list a { font-size: .85rem; color: var(--gray); text-decoration: none; transition: color .2s; }
+    .nav-list a:hover { color: var(--green); }
+    .nav-wa {
+      display: flex; align-items: center; gap: .5rem;
+      background: #25D366; color: white;
+      padding: .55rem 1.3rem; border-radius: 6px; text-decoration: none;
+      font-size: .82rem; font-weight: 500; transition: background .2s;
+    }
+    .nav-wa:hover { background: #128C7E; }
+
+    /* HERO */
+    .hero {
+      display: grid; grid-template-columns: 1fr 480px; min-height: 88vh;
+    }
+    .hero-left {
+      padding: 5rem 4rem 5rem 5rem;
+      background: var(--green-pale);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .hero-kicker {
+      display: flex; align-items: center; gap: .7rem;
+      font-size: .72rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--green-mid); margin-bottom: 1.8rem;
+      font-weight: 500;
+    }
+    .hero-kicker-dot { width: 6px; height: 6px; background: var(--green-mid); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+      line-height: 1.1; color: var(--green);
+      margin-bottom: 1.5rem;
+    }
+    h1 span { color: var(--ink); display: block; font-style: italic; }
+    .hero-bio {
+      font-size: .95rem; color: var(--gray); line-height: 1.8;
+      max-width: 480px; margin-bottom: 2.5rem;
+    }
+    .hero-chips { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .chip {
+      background: var(--green-light); color: var(--green);
+      padding: .35rem .9rem; border-radius: 20px; font-size: .75rem; font-weight: 500;
+    }
+    .hero-actions { display: flex; gap: 1rem; }
+    .btn-green {
+      background: var(--green); color: white;
+      padding: .9rem 2rem; border-radius: 6px; text-decoration: none;
+      font-weight: 500; transition: all .2s;
+    }
+    .btn-green:hover { background: var(--green-mid); transform: translateY(-2px); }
+    .btn-light {
+      background: var(--green-light); color: var(--green);
+      padding: .9rem 2rem; border-radius: 6px; text-decoration: none;
+      font-weight: 500; transition: all .2s;
+    }
+    .btn-light:hover { background: #a7f3d0; }
+
+    .hero-right {
+      background: var(--green); display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem 3rem; gap: 2rem;
+    }
+    .info-block {}
+    .info-label { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: .4rem; }
+    .info-value { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; color: white; }
+    .info-sub { font-size: .8rem; color: rgba(255,255,255,.5); margin-top: .2rem; }
+    .info-divider { height: 1px; background: rgba(255,255,255,.1); }
+    .info-cred {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px; padding: 1.2rem;
+    }
+    .cred-title { font-size: .75rem; color: rgba(255,255,255,.6); margin-bottom: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+    .cred-item { display: flex; gap: .5rem; align-items: flex-start; margin-bottom: .7rem; }
+    .cred-icon { color: #34d399; flex-shrink: 0; }
+    .cred-text { font-size: .8rem; color: rgba(255,255,255,.7); line-height: 1.4; }
+    .cred-text strong { color: white; display: block; font-size: .82rem; }
+    .schedule-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem; text-align: center;
+      background: #34d399; color: var(--green);
+      padding: 1rem; border-radius: 8px; font-weight: 700;
+      text-decoration: none; font-size: .9rem; transition: all .2s;
+    }
+    .schedule-btn:hover { background: #6ee7b7; }
+
+    /* SOBRE */
+    .sobre { padding: 6rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 2.2rem; line-height: 1.2; }
+    .section-kicker { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--green-mid); margin-bottom: .8rem; font-weight: 500; }
+    .sobre p { font-size: .9rem; color: var(--gray); line-height: 1.8; margin-top: 1rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.5rem; }
+    .form-item { text-align: center; padding: 1.4rem; background: var(--green-pale); border-radius: 8px; }
+    .form-num { font-family: 'Libre Baskerville', serif; font-size: 2rem; color: var(--green); }
+    .form-label { font-size: .75rem; color: var(--gray); margin-top: .2rem; }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item { display: flex; gap: 1rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border); }
+    .tl-year {
+      font-size: .75rem; color: var(--green-mid); font-weight: 600;
+      width: 60px; flex-shrink: 0; padding-top: .1rem;
+    }
+    .tl-info strong { font-size: .88rem; display: block; margin-bottom: .2rem; }
+    .tl-info span { font-size: .8rem; color: var(--gray); }
+
+    /* SERVIÇOS */
+    .servicos { background: var(--green-pale); padding: 6rem 5rem; }
+    .serv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2.5rem; }
+    .serv-card {
+      background: white; border-radius: 10px; padding: 1.8rem;
+      border: 1px solid var(--border); transition: all .25s;
+    }
+    .serv-card:hover { border-color: var(--green-mid); box-shadow: 0 6px 24px rgba(5,150,105,.08); }
+    .serv-icon { font-size: 2rem; margin-bottom: 1rem; color: var(--green); }
+    .serv-title { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; margin-bottom: .5rem; }
+    .serv-desc { font-size: .82rem; color: var(--gray); line-height: 1.7; }
+    .serv-price { margin-top: .8rem; font-size: .78rem; font-weight: 500; color: var(--green); }
+
+    /* CONTATO */
+    .contato { padding: 6rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group label { display: block; font-size: .78rem; font-weight: 500; margin-bottom: .4rem; color: var(--ink); }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: .7rem 1rem; border: 1px solid var(--border); border-radius: 6px;
+      font-family: inherit; font-size: .88rem; color: var(--ink);
+      transition: border-color .2s; outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green-mid); }
+    .form-submit {
+      background: var(--green); color: white; padding: .9rem;
+      border: none; border-radius: 6px; font-size: .9rem; font-weight: 500;
+      cursor: pointer; font-family: inherit; transition: background .2s;
+    }
+    .form-submit:hover { background: var(--green-mid); }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .ci-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .ci-icon {
+      width: 44px; height: 44px; background: var(--green-light);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0; color: var(--green);
+    }
+    .ci-label { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); margin-bottom: .2rem; }
+    .ci-value { font-size: .9rem; color: var(--ink); font-weight: 500; }
+    .ci-sub { font-size: .78rem; color: var(--gray); }
+
+    footer { background: var(--green); color: rgba(255,255,255,.5); text-align: center; padding: 2rem; font-size: .78rem; }
+    footer a { color: rgba(255,255,255,.6); text-decoration: none; }
+    @media (max-width: 900px) {
+      nav { padding: 1rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .sobre, .contato { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .servicos { padding: 4rem 1.5rem; }
+      .serv-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#">
+    <div class="logo-name">Dr. Carlos Mendes</div>
+    <div class="logo-crm">CRM/SP 54321 · Médico Clínico Geral</div>
+  </a>
+  <ul class="nav-list">
+    <li><a href="#">Sobre</a></li>
+    <li><a href="#">Serviços</a></li>
+    <li><a href="#">Convênios</a></li>
+    <li><a href="#">Localização</a></li>
+  </ul>
+  <a href="https://wa.me/5512999999999" class="nav-wa"><span class="material-symbols-outlined" aria-hidden="true">chat</span> WhatsApp</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-kicker"><div class="hero-kicker-dot"></div> Atendendo em São José dos Campos</div>
+    <h1>Dr. Carlos Mendes<span>Medicina com<br>atenção e cuidado</span></h1>
+    <p class="hero-bio">
+      Médico clínico geral com mais de 20 anos de experiência, especializado em saúde preventiva e manejo de doenças crônicas. Atendimento humanizado e individualizado para cada paciente.
+    </p>
+    <div class="hero-chips">
+      <span class="chip">Clínica Geral</span>
+      <span class="chip">Medicina Preventiva</span>
+      <span class="chip">Hipertensão</span>
+      <span class="chip">Diabetes</span>
+      <span class="chip">Check-up Geral</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#" class="btn-green">Agendar Consulta</a>
+      <a href="#" class="btn-light">Sobre o Dr. Carlos</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="info-block">
+      <div class="info-label">Formação</div>
+      <div class="info-value">USP — Faculdade de Medicina</div>
+      <div class="info-sub">Residência em Clínica Médica — HC/SP</div>
+    </div>
+    <div class="info-divider"></div>
+    <div class="info-block">
+      <div class="info-label">Horários de Atendimento</div>
+      <div class="info-value">Seg a Sex · 08h às 18h</div>
+      <div class="info-sub">Sábados · 08h às 12h · Mediante agendamento</div>
+    </div>
+    <div class="info-divider"></div>
+    <div class="info-cred">
+      <div class="cred-title">Credenciais</div>
+      <div class="cred-item">
+        <span class="cred-icon">✓</span>
+        <div class="cred-text">
+          <strong>CRM/SP 54321</strong>
+          Conselho Regional de Medicina de SP
+        </div>
+      </div>
+      <div class="cred-item">
+        <span class="cred-icon">✓</span>
+        <div class="cred-text">
+          <strong>SBCM</strong>
+          Sociedade Brasileira de Clínica Médica
+        </div>
+      </div>
+      <div class="cred-item">
+        <span class="cred-icon">✓</span>
+        <div class="cred-text">
+          <strong>20+ anos</strong>
+          de experiência clínica
+        </div>
+      </div>
+    </div>
+    <a href="https://wa.me/5512999999999" class="schedule-btn"><span class="material-symbols-outlined" aria-hidden="true">event_available</span> Agendar via WhatsApp</a>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre">
+  <div>
+    <div class="section-kicker">Trajetória</div>
+    <h2>Uma carreira dedicada<br>ao cuidado humano</h2>
+    <p>Graduado pela Faculdade de Medicina da USP, com residência médica no Hospital das Clínicas de São Paulo, o Dr. Carlos Mendes construiu uma carreira baseada na escuta ativa e no tratamento integral do paciente.</p>
+    <p>Seu foco em medicina preventiva visa antecipar doenças antes que se manifestem, oferecendo qualidade de vida e longevidade para seus pacientes.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2003</div>
+        <div class="tl-info">
+          <strong>Graduação em Medicina</strong>
+          <span>Faculdade de Medicina — USP São Paulo</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2005</div>
+        <div class="tl-info">
+          <strong>Residência em Clínica Médica</strong>
+          <span>Hospital das Clínicas — HC/SP</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2007</div>
+        <div class="tl-info">
+          <strong>Especialização em Medicina Preventiva</strong>
+          <span>UNIFESP — São Paulo</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2008</div>
+        <div class="tl-info">
+          <strong>Abertura do consultório em SJC</strong>
+          <span>Início do atendimento particular e convênios</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="form-grid">
+      <div class="form-item">
+        <div class="form-num">20+</div>
+        <div class="form-label">Anos de experiência</div>
+      </div>
+      <div class="form-item">
+        <div class="form-num">8.000+</div>
+        <div class="form-label">Pacientes atendidos</div>
+      </div>
+      <div class="form-item">
+        <div class="form-num">15+</div>
+        <div class="form-label">Convênios aceitos</div>
+      </div>
+      <div class="form-item">
+        <div class="form-num">4.9★</div>
+        <div class="form-label">Avaliação média</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="servicos">
+  <div class="section-kicker">Serviços</div>
+  <h2>O que ofereço</h2>
+  <div class="serv-grid">
+    <div class="serv-card">
+      <div class="serv-icon"><span class="material-symbols-outlined" aria-hidden="true">medical_services</span></div>
+      <div class="serv-title">Consulta Clínica Geral</div>
+      <p class="serv-desc">Avaliação completa do estado de saúde, anamnese detalhada e exame físico minucioso.</p>
+      <div class="serv-price">A partir de R$ 180 · Convênios aceitos</div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon"><span class="material-symbols-outlined" aria-hidden="true">assignment</span></div>
+      <div class="serv-title">Check-up Anual</div>
+      <p class="serv-desc">Pacote completo de avaliação preventiva com pedido de exames e análise de resultados.</p>
+      <div class="serv-price">Consultar valores · Convênios aceitos</div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon"><span class="material-symbols-outlined" aria-hidden="true">medication</span></div>
+      <div class="serv-title">Manejo de Doenças Crônicas</div>
+      <p class="serv-desc">Acompanhamento contínuo de hipertensão, diabetes, colesterol e outras condições crônicas.</p>
+      <div class="serv-price">A partir de R$ 160 · Convênios aceitos</div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon"><span class="material-symbols-outlined" aria-hidden="true">directions_run</span></div>
+      <div class="serv-title">Medicina do Exercício</div>
+      <p class="serv-desc">Avaliação para prática esportiva, orientação nutricional básica e liberação para atividades.</p>
+      <div class="serv-price">A partir de R$ 200 · Convênios selecionados</div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon"><span class="material-symbols-outlined" aria-hidden="true">biotech</span></div>
+      <div class="serv-title">Saúde do Homem</div>
+      <p class="serv-desc">Prevenção e diagnóstico de condições específicas da saúde masculina, incluindo PSA e check-up.</p>
+      <div class="serv-price">Consultar valores · Convênios aceitos</div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon"><span class="material-symbols-outlined" aria-hidden="true">videocam</span></div>
+      <div class="serv-title">Teleconsulta</div>
+      <p class="serv-desc">Consultas de retorno, avaliação de exames e orientações por videoconferência.</p>
+      <div class="serv-price">A partir de R$ 120 · Particular</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div>
+    <div class="section-kicker">Agende sua consulta</div>
+    <h2>Entre em contato</h2>
+    <div class="contact-form" style="margin-top:2rem;">
+      <div class="form-group">
+        <label>Nome completo</label>
+        <input type="text" placeholder="Seu nome">
+      </div>
+      <div class="form-group">
+        <label>Telefone / WhatsApp</label>
+        <input type="tel" placeholder="(12) 99999-9999">
+      </div>
+      <div class="form-group">
+        <label>Convênio</label>
+        <select>
+          <option>Particular</option>
+          <option>Unimed</option>
+          <option>Bradesco Saúde</option>
+          <option>SulAmérica</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Motivo da consulta</label>
+        <textarea rows="3" placeholder="Descreva brevemente..."></textarea>
+      </div>
+      <button class="form-submit">Enviar Solicitação</button>
+    </div>
+  </div>
+  <div class="contact-info">
+    <div class="section-kicker">Informações</div>
+    <h2>Localização<br>e horários</h2>
+    <div class="ci-item">
+      <div class="ci-icon"><span class="material-symbols-outlined" aria-hidden="true">location_on</span></div>
+      <div>
+        <div class="ci-label">Endereço</div>
+        <div class="ci-value">Rua das Magnólias, 789 — Sala 310</div>
+        <div class="ci-sub">Ed. Centro Médico · Jardim Aquarius · SJC</div>
+      </div>
+    </div>
+    <div class="ci-item">
+      <div class="ci-icon"><span class="material-symbols-outlined" aria-hidden="true">schedule</span></div>
+      <div>
+        <div class="ci-label">Horários</div>
+        <div class="ci-value">Segunda a Sexta: 08h às 18h</div>
+        <div class="ci-sub">Sábados: 08h às 12h (agendamento)</div>
+      </div>
+    </div>
+    <div class="ci-item">
+      <div class="ci-icon"><span class="material-symbols-outlined" aria-hidden="true">call</span></div>
+      <div>
+        <div class="ci-label">Telefone</div>
+        <div class="ci-value">(12) 3333-5555</div>
+        <div class="ci-sub">WhatsApp: (12) 99999-9999</div>
+      </div>
+    </div>
+    <div class="ci-item">
+      <div class="ci-icon"><span class="material-symbols-outlined" aria-hidden="true">mail</span></div>
+      <div>
+        <div class="ci-label">E-mail</div>
+        <div class="ci-value">contato@drcarlosmendes.com.br</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Dr. Carlos Mendes · CRM/SP 54321 · Rua das Magnólias, 789 · São José dos Campos — SP</p>
+  <p style="margin-top:.4rem;"><a href="#">Política de Privacidade</a> · <a href="#">LGPD</a></p>
+  <p style="margin-top:1.5rem;font-size:.7rem;opacity:.4;">Site desenvolvido por <a href="../main.html">Leandro Ferreira</a></p>
+</footer>
+
+</body>
+</html>

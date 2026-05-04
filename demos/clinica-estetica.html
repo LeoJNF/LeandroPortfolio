@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Renova Skin — Estética e Dermatologia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prata&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #2b1c1f;
+      --muted: #6f6465;
+      --rose: #b05a6a;
+      --rose-dark: #8a3d4e;
+      --blush: #f8e7e8;
+      --cream: #fff9f6;
+      --sand: #f3ebe6;
+      --gold: #c9a26a;
+      --border: #ead8d6;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; background: var(--cream); color: var(--ink); }
+
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      text-transform: none;
+      letter-spacing: normal;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(255,249,246,.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .brand {
+      display: flex; align-items: center; gap: .8rem; text-decoration: none; color: inherit;
+    }
+    .brand-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .brand-name { font-family: 'Prata', serif; font-size: 1.1rem; letter-spacing: .02em; }
+    .brand-sub { font-size: .7rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 1.8rem; }
+    .nav-links a { text-decoration: none; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-cta {
+      background: var(--rose); color: white;
+      padding: .6rem 1.4rem; border-radius: 999px;
+      text-decoration: none; font-size: .82rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: .4rem;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--rose-dark); }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem;
+      padding: 6rem 4rem 4rem;
+      background: radial-gradient(circle at 15% 20%, #f7e2e7 0%, transparent 45%),
+                  radial-gradient(circle at 85% 10%, #f1efe9 0%, transparent 45%),
+                  linear-gradient(135deg, #fff6f4 0%, #f5ece8 55%, #f0e9f0 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; right: -120px; top: 20%;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(176,90,106,.2) 0%, transparent 70%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--blush); color: var(--rose);
+      padding: .4rem 1rem; border-radius: 999px;
+      font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+    h1 {
+      font-family: 'Prata', serif;
+      font-size: clamp(2.6rem, 4.8vw, 4rem);
+      line-height: 1.1; margin-bottom: 1.4rem;
+    }
+    h1 em { color: var(--rose); font-style: normal; }
+    .hero-desc { font-size: 1rem; line-height: 1.8; color: var(--muted); margin-bottom: 2.2rem; max-width: 520px; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.2rem; }
+    .btn-primary {
+      background: var(--rose); color: white;
+      padding: .9rem 2.1rem; border-radius: 999px;
+      text-decoration: none; font-size: .9rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: transform .2s, background .2s;
+    }
+    .btn-primary:hover { background: var(--rose-dark); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid var(--rose); color: var(--rose);
+      padding: .9rem 2.1rem; border-radius: 999px;
+      text-decoration: none; font-size: .9rem; font-weight: 600;
+      transition: all .2s;
+    }
+    .btn-outline:hover { background: var(--blush); }
+    .hero-features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem 1.5rem; }
+    .hero-feature { display: flex; align-items: center; gap: .5rem; font-size: .85rem; color: var(--ink); }
+
+    .hero-card {
+      position: relative; z-index: 1;
+      background: white; border: 1px solid var(--border);
+      border-radius: 18px; padding: 2rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,.08);
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .card-tag {
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--rose); font-weight: 600;
+    }
+    .card-title { font-family: 'Prata', serif; font-size: 1.6rem; }
+    .card-row { display: flex; align-items: center; justify-content: space-between; font-size: .9rem; color: var(--muted); }
+    .status {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--ink); font-weight: 600;
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block; }
+    .card-cta {
+      margin-top: .4rem;
+      background: var(--ink); color: white;
+      padding: .9rem 1.2rem; border-radius: 12px;
+      text-decoration: none; font-weight: 600; font-size: .9rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    }
+
+    /* SECTIONS */
+    section.section { padding: 5.5rem 4rem; }
+    .section-head { text-align: center; margin-bottom: 3rem; }
+    .tag {
+      display: inline-block; padding: .3rem .9rem; border-radius: 999px;
+      background: var(--blush); color: var(--rose);
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .9rem;
+    }
+    h2 { font-family: 'Prata', serif; font-size: 2.6rem; line-height: 1.2; margin-bottom: .6rem; }
+    .section-sub { color: var(--muted); font-size: .95rem; }
+
+    .procedures-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem;
+    }
+    .proc-card {
+      background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.6rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .proc-card:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(0,0,0,.08); }
+    .proc-icon {
+      width: 44px; height: 44px; border-radius: 12px; background: var(--blush);
+      display: inline-flex; align-items: center; justify-content: center; color: var(--rose);
+      margin-bottom: 1rem; font-size: 1.4rem;
+    }
+    .proc-title { font-weight: 600; margin-bottom: .4rem; }
+    .proc-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    .results { background: var(--sand); }
+    .results-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2.5rem; align-items: center; }
+    .results-list { display: grid; gap: 1rem; }
+    .results-item {
+      display: flex; align-items: center; gap: .8rem; font-size: .95rem;
+    }
+    .results-item span { color: var(--rose); }
+    .results-card {
+      background: white; border-radius: 18px; padding: 2rem; border: 1px solid var(--border);
+      display: grid; gap: 1.2rem;
+    }
+    .metric { display: flex; justify-content: space-between; align-items: center; }
+    .metric strong { font-size: 1.4rem; font-family: 'Prata', serif; }
+    .metric small { color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: .65rem; }
+
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+    .team-card { background: white; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; }
+    .team-photo {
+      height: 120px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #f6e1e5, #f5efe9); color: var(--rose); font-size: 2.6rem;
+    }
+    .team-body { padding: 1.4rem; }
+    .team-name { font-weight: 600; margin-bottom: .2rem; }
+    .team-role { font-size: .75rem; color: var(--rose); letter-spacing: .1em; text-transform: uppercase; }
+    .team-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-top: .8rem; }
+
+    .contact { background: #ffffff; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .contact-form { display: grid; gap: 1rem; }
+    .contact-form label { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+    .contact-form input, .contact-form textarea {
+      width: 100%; padding: .8rem 1rem; border-radius: 10px; border: 1px solid var(--border);
+      font-family: inherit; font-size: .9rem;
+    }
+    .contact-form button {
+      background: var(--rose); color: white; border: none; border-radius: 10px; padding: .9rem;
+      font-weight: 600; cursor: pointer; transition: background .2s;
+    }
+    .contact-form button:hover { background: var(--rose-dark); }
+    .contact-info { display: grid; gap: 1.2rem; }
+    .info-item { display: flex; gap: .8rem; align-items: flex-start; }
+    .info-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--blush); color: var(--rose); display: flex; align-items: center; justify-content: center; }
+    .info-title { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .2rem; }
+    .info-value { font-weight: 600; }
+    .info-sub { font-size: .82rem; color: var(--muted); }
+
+    footer {
+      background: #231517; color: rgba(255,255,255,.5);
+      text-align: center; padding: 2rem; font-size: .78rem;
+    }
+    footer a { color: rgba(255,255,255,.7); text-decoration: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 960px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 5rem 1.5rem 3rem; }
+      .hero-card { order: -1; }
+      section.section { padding: 4rem 1.5rem; }
+      .procedures-grid { grid-template-columns: 1fr 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero-features { grid-template-columns: 1fr; }
+      .procedures-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="#">
+    <div class="brand-icon"><span class="material-symbols-outlined" aria-hidden="true">spa</span></div>
+    <div>
+      <div class="brand-name">Renova Skin</div>
+      <div class="brand-sub">Clínica Estética & Dermatologia</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#procedimentos">Procedimentos</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#equipe">Equipe</a>
+    <a href="#contato">Contato</a>
+  </div>
+  <a href="#contato" class="nav-cta"><span class="material-symbols-outlined" aria-hidden="true">event_available</span> Agendar Avaliação</a>
+</nav>
+
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="material-symbols-outlined" aria-hidden="true">science</span>
+      Dermatologia & Estética Avançada
+    </div>
+    <h1>Beleza saudável com <em>cuidado médico</em> e tecnologia</h1>
+    <p class="hero-desc">
+      Protocolos personalizados, equipamentos de última geração e atendimento exclusivo para pele, cabelos e rejuvenescimento natural em São José dos Campos.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#contato"><span class="material-symbols-outlined" aria-hidden="true">event_available</span> Agendar Avaliação</a>
+      <a class="btn-outline" href="#procedimentos">Ver Procedimentos</a>
+    </div>
+    <div class="hero-features">
+      <div class="hero-feature"><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Dermatologistas certificados</div>
+      <div class="hero-feature"><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Protocolos com segurança clínica</div>
+      <div class="hero-feature"><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Equipamentos de última geração</div>
+      <div class="hero-feature"><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Planos de cuidados contínuos</div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="card-tag">Agenda da Semana</div>
+    <div class="card-title">Horários disponíveis</div>
+    <div class="card-row">
+      <span>Terça-feira</span>
+      <span class="status"><span class="status-dot"></span>08:30</span>
+    </div>
+    <div class="card-row">
+      <span>Quinta-feira</span>
+      <span class="status"><span class="status-dot"></span>14:00</span>
+    </div>
+    <div class="card-row">
+      <span>Sexta-feira</span>
+      <span class="status"><span class="status-dot"></span>16:30</span>
+    </div>
+    <a class="card-cta" href="#contato"><span class="material-symbols-outlined" aria-hidden="true">chat</span>Falar com a equipe</a>
+  </div>
+</section>
+
+<section class="section" id="procedimentos">
+  <div class="section-head">
+    <div class="tag">Procedimentos</div>
+    <h2>Tratamentos para realçar sua pele</h2>
+    <p class="section-sub">Protocolos estéticos com avaliação médica, resultados naturais e acompanhamento contínuo.</p>
+  </div>
+  <div class="procedures-grid">
+    <div class="proc-card">
+      <div class="proc-icon"><span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span></div>
+      <div class="proc-title">Rejuvenescimento Facial</div>
+      <p class="proc-desc">Bioestimuladores e toxina botulínica para firmeza e suavidade das linhas.</p>
+    </div>
+    <div class="proc-card">
+      <div class="proc-icon"><span class="material-symbols-outlined" aria-hidden="true">face</span></div>
+      <div class="proc-title">Harmonização Sutil</div>
+      <p class="proc-desc">Preenchimentos estratégicos para melhorar contorno e simetria facial.</p>
+    </div>
+    <div class="proc-card">
+      <div class="proc-icon"><span class="material-symbols-outlined" aria-hidden="true">opacity</span></div>
+      <div class="proc-title">Tratamento de Manchas</div>
+      <p class="proc-desc">Laser, peelings e clareadores médicos para uniformizar o tom da pele.</p>
+    </div>
+    <div class="proc-card">
+      <div class="proc-icon"><span class="material-symbols-outlined" aria-hidden="true">healing</span></div>
+      <div class="proc-title">Acne e Cicatrizes</div>
+      <p class="proc-desc">Protocolos combinados com microagulhamento e laser fracionado.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section results" id="resultados">
+  <div class="results-grid">
+    <div>
+      <div class="tag">Resultados</div>
+      <h2>Resultados que valorizam sua identidade</h2>
+      <p class="section-sub">Tratamentos com foco em estética natural, segurança clínica e tecnologia médica.</p>
+      <div class="results-list" style="margin-top:2rem;">
+        <div class="results-item"><span class="material-symbols-outlined" aria-hidden="true">shield</span>Protocolos seguros e supervisionados</div>
+        <div class="results-item"><span class="material-symbols-outlined" aria-hidden="true">spa</span>Equipe multidisciplinar e acolhedora</div>
+        <div class="results-item"><span class="material-symbols-outlined" aria-hidden="true">schedule</span>Planos de cuidado com revisões regulares</div>
+      </div>
+    </div>
+    <div class="results-card">
+      <div class="metric">
+        <div>
+          <small>Satisfação</small>
+          <strong>98%</strong>
+        </div>
+        <span class="material-symbols-outlined" aria-hidden="true">insights</span>
+      </div>
+      <div class="metric">
+        <div>
+          <small>Protocolos</small>
+          <strong>120+</strong>
+        </div>
+        <span class="material-symbols-outlined" aria-hidden="true">biotech</span>
+      </div>
+      <div class="metric">
+        <div>
+          <small>Revisões</small>
+          <strong>Mensais</strong>
+        </div>
+        <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="equipe">
+  <div class="section-head">
+    <div class="tag">Equipe</div>
+    <h2>Especialistas em estética médica</h2>
+    <p class="section-sub">Atendimento humanizado e orientado para resultados naturais e duradouros.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo"><span class="material-symbols-outlined" aria-hidden="true">person</span></div>
+      <div class="team-body">
+        <div class="team-name">Dra. Elisa Marques</div>
+        <div class="team-role">Dermatologia Clínica</div>
+        <p class="team-desc">Especialista em tratamentos para acne, rosácea e rejuvenescimento facial.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><span class="material-symbols-outlined" aria-hidden="true">person</span></div>
+      <div class="team-body">
+        <div class="team-name">Dra. Renata Alves</div>
+        <div class="team-role">Estética Avançada</div>
+        <p class="team-desc">Foco em protocolos de harmonização facial e bioestimuladores de colágeno.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><span class="material-symbols-outlined" aria-hidden="true">person</span></div>
+      <div class="team-body">
+        <div class="team-name">Dr. Pedro Sampaio</div>
+        <div class="team-role">Tricologia</div>
+        <p class="team-desc">Tratamentos clínicos para queda capilar e fortalecimento do couro cabeludo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contato">
+  <div class="section-head">
+    <div class="tag">Contato</div>
+    <h2>Agende sua avaliação</h2>
+    <p class="section-sub">Nossa equipe responde rapidamente para entender seu objetivo e montar seu protocolo.</p>
+  </div>
+  <div class="contact-grid">
+    <form class="contact-form">
+      <div>
+        <label>Nome completo</label>
+        <input type="text" placeholder="Seu nome">
+      </div>
+      <div>
+        <label>Telefone / WhatsApp</label>
+        <input type="tel" placeholder="(12) 99999-9999">
+      </div>
+      <div>
+        <label>Procedimento de interesse</label>
+        <input type="text" placeholder="Ex: Rejuvenescimento facial">
+      </div>
+      <div>
+        <label>Mensagem</label>
+        <textarea rows="4" placeholder="Conte um pouco sobre seu objetivo..."></textarea>
+      </div>
+      <button type="submit">Enviar solicitação</button>
+    </form>
+    <div class="contact-info">
+      <div class="info-item">
+        <div class="info-icon"><span class="material-symbols-outlined" aria-hidden="true">location_on</span></div>
+        <div>
+          <div class="info-title">Endereço</div>
+          <div class="info-value">Av. Cassiano Ricardo, 980 — Jardim Aquarius</div>
+          <div class="info-sub">São José dos Campos — SP</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><span class="material-symbols-outlined" aria-hidden="true">call</span></div>
+        <div>
+          <div class="info-title">Telefone</div>
+          <div class="info-value">(12) 3888-1200</div>
+          <div class="info-sub">Atendimento de segunda a sexta</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><span class="material-symbols-outlined" aria-hidden="true">mail</span></div>
+        <div>
+          <div class="info-title">E-mail</div>
+          <div class="info-value">contato@renovaskin.com.br</div>
+          <div class="info-sub">Respondemos em até 24h</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Clínica Renova Skin · Dermatologia e Estética · São José dos Campos — SP</p>
+  <p style="margin-top:.4rem;"><a href="#">Política de Privacidade</a> · <a href="#">LGPD</a></p>
+  <p style="margin-top:1.4rem;font-size:.7rem;opacity:.6;">Site desenvolvido por <a href="../main.html">Leandro Ferreira</a></p>
+</footer>
+
+</body>
+</html>
