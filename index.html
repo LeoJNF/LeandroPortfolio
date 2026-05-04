@@ -366,6 +366,35 @@
       .demo-card:nth-child(n) { grid-column: span 1; }
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
     }
+    @media (max-width: 700px) {
+      nav { padding: .9rem 1rem; }
+      .nav-logo { font-size: 1.1rem; }
+      .hero { min-height: auto; padding: 6rem 1.5rem 3.5rem; }
+      .hero-line { display: none; }
+      .hero-content { max-width: 100%; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; }
+      .hero-stats {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 2.5rem;
+      }
+      .stat-num { font-size: 2rem; }
+      .stat-label { font-size: .65rem; }
+      section { padding: 3.5rem 1.25rem; }
+      .demos-intro { margin-bottom: 2.5rem; }
+      .demo-info { padding: 1.1rem 1.2rem; }
+      .demo-desc { font-size: .75rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-item { padding: 1.6rem; }
+      .about-card { padding: 2rem; }
+      .about-badge { position: static; margin-top: 1.5rem; display: inline-flex; align-items: center; }
+      .contact-links { flex-direction: column; align-items: stretch; }
+      .contact-link { justify-content: center; }
+      footer { padding: 1.5rem 1.25rem; }
+    }
   </style>
 </head>
 <body>
