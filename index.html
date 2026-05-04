@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leandro Ferreira — Desenvolvimento Web para Saúde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f1117;
+      --cream: #f8f5ef;
+      --gold: #b8963e;
+      --gold-light: #d4af6a;
+      --muted: #6b6b72;
+      --border: #e0dbd0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      text-transform: none;
+      letter-spacing: normal;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+    .badge-icon { font-size: 1rem; margin-right: .4rem; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(248,245,239,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--ink); color: var(--cream) !important;
+      padding: .5rem 1.4rem; border-radius: 2px;
+      font-size: 0.8rem !important; letter-spacing: 0.1em !important;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--cream) !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 4rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(184,150,62,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(184,150,62,0.05) 0%, transparent 50%);
+    }
+    .hero-line {
+      position: absolute; top: 0; left: 50%;
+      width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
+      opacity: .5;
+    }
+    .hero-content { position: relative; max-width: 700px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2rem;
+      animation: fadeUp .8s ease both;
+    }
+    .hero-badge::before {
+      content: ''; width: 2rem; height: 1px; background: var(--gold);
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300; line-height: 1.05;
+      animation: fadeUp .8s .1s ease both;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      margin-top: 1.8rem;
+      font-size: 1.05rem; color: var(--muted); line-height: 1.7;
+      max-width: 520px;
+      animation: fadeUp .8s .2s ease both;
+    }
+    .hero-actions {
+      margin-top: 3rem; display: flex; gap: 1.2rem; flex-wrap: wrap;
+      animation: fadeUp .8s .3s ease both;
+    }
+    .btn-primary {
+      background: var(--ink); color: var(--cream);
+      padding: .9rem 2.2rem; font-size: .85rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: background .25s, transform .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid var(--ink); color: var(--ink);
+      padding: .9rem 2.2rem; font-size: .85rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: all .25s; display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-stats {
+      position: absolute; right: 4rem; bottom: 5rem;
+      display: flex; gap: 3rem;
+      animation: fadeUp .8s .5s ease both;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 300; color: var(--ink);
+      line-height: 1;
+    }
+    .stat-label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
+
+    /* SECTION STYLES */
+    section { padding: 6rem 4rem; }
+    .section-label {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .section-label::after { content: ''; flex: 0 0 3rem; height: 1px; background: var(--gold); }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.2;
+    }
+
+    /* DEMOS GRID */
+    .demos { background: var(--ink); color: var(--cream); }
+    .demos .section-label { color: var(--gold-light); }
+    .demos .section-label::after { background: var(--gold-light); }
+    .demos h2 { color: var(--cream); }
+    .demos-intro {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 4rem; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .demos-sub { font-size: .95rem; color: rgba(248,245,239,.55); max-width: 420px; line-height: 1.7; margin-top: .8rem; }
+
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.2rem;
+    }
+
+    .demo-card {
+      border-radius: 4px; overflow: hidden; position: relative;
+      cursor: pointer; transition: transform .3s, box-shadow .3s;
+      text-decoration: none; display: block;
+    }
+    .demo-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+
+    .demo-card:nth-child(1) { grid-column: span 7; }
+    .demo-card:nth-child(2) { grid-column: span 5; }
+    .demo-card:nth-child(3) { grid-column: span 4; }
+    .demo-card:nth-child(4) { grid-column: span 4; }
+    .demo-card:nth-child(5) { grid-column: span 4; }
+
+    .demo-thumb {
+      height: 280px;
+      position: relative; overflow: hidden;
+    }
+    .demo-card:nth-child(1) .demo-thumb { height: 340px; }
+    .demo-card:nth-child(2) .demo-thumb { height: 340px; }
+
+    /* Thumbnail previews via CSS */
+    .thumb-1 { background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0e2240 100%); }
+    .thumb-2 { background: linear-gradient(135deg, #1a0a2e 0%, #2d1b54 50%, #0f0820 100%); }
+    .thumb-3 { background: linear-gradient(135deg, #0a2018 0%, #1a4030 50%, #0a2018 100%); }
+    .thumb-4 { background: linear-gradient(135deg, #1a0808 0%, #3d1515 50%, #1a0808 100%); }
+    .thumb-5 { background: linear-gradient(135deg, #12120a 0%, #2a2a10 50%, #12120a 100%); }
+
+    .thumb-preview {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      padding: 1.5rem; gap: .8rem; overflow: hidden;
+    }
+    .tp-bar { height: 3px; border-radius: 2px; width: 40%; opacity: .7; }
+    .tp-title { height: 12px; border-radius: 2px; width: 65%; }
+    .tp-sub { height: 7px; border-radius: 2px; width: 80%; opacity: .4; }
+    .tp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-top: .5rem; }
+    .tp-box { border-radius: 3px; height: 60px; opacity: .3; }
+    .tp-hero-img {
+      position: absolute; right: -10px; bottom: 0;
+      width: 55%; height: 80%;
+      border-radius: 8px 8px 0 0;
+      opacity: .25;
+    }
+
+    .demo-info {
+      padding: 1.4rem 1.6rem;
+      background: #161820;
+      position: relative;
+    }
+    .demo-tag {
+      font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: .4rem;
+    }
+    .demo-title { font-size: 1rem; font-weight: 500; color: var(--cream); }
+    .demo-desc { font-size: .78rem; color: rgba(248,245,239,.45); margin-top: .3rem; line-height: 1.5; }
+    .demo-arrow {
+      position: absolute; right: 1.6rem; top: 50%;
+      transform: translateY(-50%);
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid rgba(184,150,62,.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold-light); font-size: .9rem;
+      transition: all .2s;
+    }
+    .demo-card:hover .demo-arrow {
+      background: var(--gold); border-color: var(--gold); color: var(--ink);
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .service-item {
+      padding: 2.2rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .service-item:hover {
+      border-color: var(--gold);
+      box-shadow: 0 8px 30px rgba(184,150,62,.08);
+    }
+    .service-icon {
+      font-size: 1.8rem; margin-bottom: 1.2rem;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 600; margin-bottom: .6rem;
+    }
+    .service-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+
+    /* ABOUT */
+    .about { background: #f2ede4; }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-card {
+      background: var(--ink); color: var(--cream);
+      border-radius: 4px; padding: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute; top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,150,62,.2) 0%, transparent 70%);
+    }
+    .about-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 300;
+      margin-bottom: .4rem; line-height: 1.1;
+    }
+    .about-role { font-size: .78rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-light); }
+    .about-divider { width: 3rem; height: 1px; background: rgba(255,255,255,.15); margin: 1.8rem 0; }
+    .about-skills { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .skill-tag {
+      font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+      padding: .35rem .9rem; border: 1px solid rgba(255,255,255,.15);
+      border-radius: 2px; color: rgba(248,245,239,.6);
+    }
+    .about-badge {
+      position: absolute; bottom: -1.5rem; right: 2rem;
+      background: var(--gold); color: var(--ink);
+      padding: .8rem 1.5rem; border-radius: 2px;
+      font-size: .75rem; font-weight: 500; letter-spacing: .05em;
+      white-space: nowrap;
+    }
+
+    .about-text h2 { margin-bottom: 1.5rem; }
+    .about-text p { font-size: .95rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+    .about-list { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: .7rem; }
+    .about-list li {
+      display: flex; align-items: center; gap: .8rem;
+      font-size: .88rem; color: var(--ink);
+    }
+    .about-list li::before {
+      content: '→'; color: var(--gold); font-size: .8rem; flex-shrink: 0;
+    }
+
+    /* CONTACT */
+    .contact { background: var(--ink); color: var(--cream); text-align: center; }
+    .contact h2 { color: var(--cream); margin-bottom: 1rem; }
+    .contact p { color: rgba(248,245,239,.5); margin-bottom: 2.5rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .contact-link {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .85rem; color: rgba(248,245,239,.7);
+      text-decoration: none; padding: .8rem 1.5rem;
+      border: 1px solid rgba(255,255,255,.1); border-radius: 2px;
+      transition: all .2s;
+    }
+    .contact-link:hover { border-color: var(--gold); color: var(--gold-light); }
+    .contact-link span { font-size: 1.1rem; }
+
+    /* FOOTER */
+    footer {
+      background: #080a0e; color: rgba(248,245,239,.3);
+      padding: 2rem 4rem; text-align: center;
+      font-size: .78rem; letter-spacing: .05em;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .hero-stats { position: static; margin-top: 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .demos-grid { grid-template-columns: 1fr; }
+      .demo-card:nth-child(n) { grid-column: span 1; }
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#"><span>L</span>eandro Ferreira</a>
+  <ul class="nav-links">
+    <li><a href="#demos">Projetos</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#contato" class="nav-cta">Solicitar Orçamento</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Desenvolvimento Web para Saúde</div>
+    <h1>Sites que<br>elevam sua <em>clínica</em><br>ao próximo nível</h1>
+    <p class="hero-sub">
+      Criação de presença digital premium para médicos, clínicas e consultórios.
+      Design sofisticado, conteúdo estratégico e resultados que convertem.
+    </p>
+    <div class="hero-actions">
+      <a href="#demos" class="btn-primary">Ver Projetos</a>
+      <a href="#contato" class="btn-outline">Falar Comigo</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Modelos de Clínicas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Personalizado</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">SJC</div>
+      <div class="stat-label">São José dos Campos</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMOS -->
+<section class="demos" id="demos">
+  <div class="demos-intro">
+    <div>
+      <div class="section-label">Portfólio</div>
+      <h2>Projetos para<br>área da saúde</h2>
+      <p class="demos-sub">Cinco modelos distintos desenvolvidos especialmente para diferentes tipos de negócios médicos. Clique para visualizar cada um.</p>
+    </div>
+  </div>
+
+  <div class="demos-grid">
+
+    <!-- Demo 1 -->
+    <a class="demo-card" href="demos/clinica-especializada.html" target="_blank">
+      <div class="demo-thumb thumb-1">
+        <div class="thumb-preview">
+          <div class="tp-bar" style="background:#4a9eff;"></div>
+          <div class="tp-title" style="background:rgba(255,255,255,.6);height:18px;"></div>
+          <div class="tp-sub"></div>
+          <div class="tp-grid">
+            <div class="tp-box" style="background:#4a9eff;border-radius:6px;"></div>
+            <div class="tp-box" style="background:#4a9eff;border-radius:6px;"></div>
+            <div class="tp-box" style="background:#4a9eff;border-radius:6px;"></div>
+            <div class="tp-box" style="background:#4a9eff;border-radius:6px;"></div>
+          </div>
+          <span class="material-symbols-outlined" style="position:absolute;top:1rem;right:1rem;font-size:3rem;opacity:.15;">local_hospital</span>
+        </div>
+      </div>
+      <div class="demo-info">
+        <div class="demo-tag">Clínica Especializada</div>
+        <div class="demo-title">Instituto de Cardiologia Premium</div>
+        <div class="demo-desc">Design azul-navy sofisticado para clínica de especialidade única</div>
+        <div class="demo-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- Demo 2 -->
+    <a class="demo-card" href="demos/clinica-multiprofissional.html" target="_blank">
+      <div class="demo-thumb thumb-2">
+        <div class="thumb-preview">
+          <div class="tp-bar" style="background:#a78bfa;"></div>
+          <div class="tp-title" style="background:rgba(255,255,255,.6);height:18px;"></div>
+          <div class="tp-sub"></div>
+          <div style="display:flex;gap:.4rem;margin-top:.8rem;flex-wrap:wrap;">
+            <div style="background:#a78bfa;opacity:.4;border-radius:20px;padding:.2rem .7rem;font-size:.55rem;color:#fff;">Cardiologia</div>
+            <div style="background:#a78bfa;opacity:.4;border-radius:20px;padding:.2rem .7rem;font-size:.55rem;color:#fff;">Ortopedia</div>
+            <div style="background:#a78bfa;opacity:.4;border-radius:20px;padding:.2rem .7rem;font-size:.55rem;color:#fff;">Pediatria</div>
+          </div>
+          <span class="material-symbols-outlined" style="position:absolute;top:1rem;right:1rem;font-size:3rem;opacity:.15;">groups</span>
+        </div>
+      </div>
+      <div class="demo-info">
+        <div class="demo-tag">Multiprofissional</div>
+        <div class="demo-title">Clínica Bem Estar Integrado</div>
+        <div class="demo-desc">Vários especialistas sob um mesmo teto, design vibrante e moderno</div>
+        <div class="demo-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- Demo 3 -->
+    <a class="demo-card" href="demos/consultorio-medico.html" target="_blank">
+      <div class="demo-thumb thumb-3">
+        <div class="thumb-preview">
+          <div class="tp-bar" style="background:#34d399;"></div>
+          <div class="tp-title" style="background:rgba(255,255,255,.6);height:18px;"></div>
+          <div class="tp-sub"></div>
+          <div style="position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.3);border-radius:4px;padding:.8rem;font-size:.6rem;color:rgba(255,255,255,.5);">Dr. Carlos Mendes • CRM 12345</div>
+          <span class="material-symbols-outlined" style="position:absolute;top:1rem;right:1rem;font-size:3rem;opacity:.15;">medical_services</span>
+        </div>
+      </div>
+      <div class="demo-info">
+        <div class="demo-tag">Consultório Individual</div>
+        <div class="demo-title">Dr. Carlos Mendes — Clínica Geral</div>
+        <div class="demo-desc">Identidade pessoal forte, confiança e elegância em verde</div>
+        <div class="demo-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- Demo 4 -->
+    <a class="demo-card" href="demos/clinica-estetica.html" target="_blank">
+      <div class="demo-thumb thumb-4">
+        <div class="thumb-preview">
+          <div class="tp-bar" style="background:#f87171;"></div>
+          <div class="tp-title" style="background:rgba(255,255,255,.6);height:18px;"></div>
+          <div class="tp-sub"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-top:.8rem;">
+            <div style="background:rgba(248,113,113,.2);border:1px solid rgba(248,113,113,.3);border-radius:4px;height:55px;"></div>
+            <div style="background:rgba(248,113,113,.2);border:1px solid rgba(248,113,113,.3);border-radius:4px;height:55px;"></div>
+          </div>
+          <span class="material-symbols-outlined" style="position:absolute;top:1rem;right:1rem;font-size:3rem;opacity:.15;">auto_awesome</span>
+        </div>
+      </div>
+      <div class="demo-info">
+        <div class="demo-tag">Clínica Estética / Dermatologia</div>
+        <div class="demo-title">Clínica Renova Skin</div>
+        <div class="demo-desc">Estética médica e dermatologia com design luxury e feminino</div>
+        <div class="demo-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- Demo 5 -->
+    <a class="demo-card" href="demos/clinica-odontologica.html" target="_blank">
+      <div class="demo-thumb thumb-5">
+        <div class="thumb-preview">
+          <div class="tp-bar" style="background:#fbbf24;"></div>
+          <div class="tp-title" style="background:rgba(255,255,255,.6);height:18px;"></div>
+          <div class="tp-sub"></div>
+          <div style="margin-top:.8rem;display:flex;gap:.4rem;">
+            <div style="flex:1;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.2);border-radius:4px;height:50px;"></div>
+            <div style="flex:1;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.2);border-radius:4px;height:50px;"></div>
+            <div style="flex:1;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.2);border-radius:4px;height:50px;"></div>
+          </div>
+          <span class="material-symbols-outlined" style="position:absolute;top:1rem;right:1rem;font-size:3rem;opacity:.15;">health_and_safety</span>
+        </div>
+      </div>
+      <div class="demo-info">
+        <div class="demo-tag">Odontologia</div>
+        <div class="demo-title">Studio Smile — Odontologia Estética</div>
+        <div class="demo-desc">Sorriso como marca, identidade quente e moderna para odonto</div>
+        <div class="demo-arrow">→</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicos">
+  <div class="section-label">O que ofereço</div>
+  <h2>Serviços completos<br>para sua presença digital</h2>
+  <div class="services-grid">
+    <div class="service-item">
+      <span class="material-symbols-outlined service-icon" aria-hidden="true">palette</span>
+      <div class="service-title">Design Personalizado</div>
+      <p class="service-desc">Cada projeto é único. Sua identidade visual, cores e personalidade refletidas em cada detalhe do site.</p>
+    </div>
+    <div class="service-item">
+      <span class="material-symbols-outlined service-icon" aria-hidden="true">devices</span>
+      <div class="service-title">Responsivo & Rápido</div>
+      <p class="service-desc">Sites que funcionam perfeitamente em celulares, tablets e computadores. Velocidade que retém pacientes.</p>
+    </div>
+    <div class="service-item">
+      <span class="material-symbols-outlined service-icon" aria-hidden="true">event_available</span>
+      <div class="service-title">Agendamento Online</div>
+      <p class="service-desc">Integração com WhatsApp, Calendly ou sistemas próprios para agendamento direto pelo site.</p>
+    </div>
+    <div class="service-item">
+      <span class="material-symbols-outlined service-icon" aria-hidden="true">search</span>
+      <div class="service-title">SEO para Médicos</div>
+      <p class="service-desc">Apareça no Google quando pacientes buscam por sua especialidade na sua cidade.</p>
+    </div>
+    <div class="service-item">
+      <span class="material-symbols-outlined service-icon" aria-hidden="true">insights</span>
+      <div class="service-title">Analytics & Métricas</div>
+      <p class="service-desc">Acompanhe visitas, origens e conversões com painéis integrados ao Google Analytics.</p>
+    </div>
+    <div class="service-item">
+      <span class="material-symbols-outlined service-icon" aria-hidden="true">shield</span>
+      <div class="service-title">Segurança & LGPD</div>
+      <p class="service-desc">Conformidade com a Lei Geral de Proteção de Dados. Certificado SSL e política de privacidade incluídos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-card">
+        <div class="about-name">Leandro<br>Ferreira</div>
+        <div class="about-role">Desenvolvedor Web & Designer</div>
+        <div class="about-divider"></div>
+        <div class="about-skills">
+          <span class="skill-tag">Next.js</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">UI/UX</span>
+          <span class="skill-tag">SEO</span>
+          <span class="skill-tag">Google Cloud</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Supabase</span>
+        </div>
+        <div class="about-badge"><span class="material-symbols-outlined badge-icon" aria-hidden="true">location_on</span>São José dos Campos — SP</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label">Sobre mim</div>
+      <h2>Tecnologia a serviço<br>da medicina</h2>
+      <p>
+        Desenvolvedor com experiência em criar produtos digitais completos, do design à programação.
+        Trabalho com as tecnologias mais modernas para entregar sites de alta performance e conversão.
+      </p>
+      <p>
+        Especializado no setor de saúde, entendo as necessidades específicas de médicos e clínicas:
+        transmitir confiança, profissionalismo e facilitar o contato com pacientes.
+      </p>
+      <ul class="about-list">
+        <li>Sites entregues em até 15 dias úteis</li>
+        <li>Revisões ilimitadas até sua aprovação</li>
+        <li>Suporte pós-lançamento incluído</li>
+        <li>Hospedagem e domínio orientados</li>
+        <li>Treinamento para atualizar o conteúdo</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contato">
+  <div class="section-label" style="color:var(--gold-light);justify-content:center;">
+    <span style="flex:0 0 3rem;height:1px;background:var(--gold-light);display:block;"></span>
+    Contato
+    <span style="flex:0 0 3rem;height:1px;background:var(--gold-light);display:block;"></span>
+  </div>
+  <h2>Pronto para elevar<br>sua clínica ao próximo nível?</h2>
+  <p>Entre em contato e receba uma proposta personalizada sem compromisso.</p>
+  <div class="contact-links">
+    <a href="https://wa.me/5512999999999" class="contact-link" target="_blank">
+      <span class="material-symbols-outlined" aria-hidden="true">chat</span> WhatsApp
+    </a>
+    <a href="mailto:leandro@email.com" class="contact-link">
+      <span class="material-symbols-outlined" aria-hidden="true">mail</span> E-mail
+    </a>
+    <a href="https://linkedin.com/in/leandro" class="contact-link" target="_blank">
+      <span class="material-symbols-outlined" aria-hidden="true">work</span> LinkedIn
+    </a>
+    <a href="https://github.com/leandro" class="contact-link" target="_blank">
+      <span class="material-symbols-outlined" aria-hidden="true">code</span> GitHub
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Leandro Ferreira · Desenvolvimento Web · São José dos Campos, SP</p>
+</footer>
+
+</body>
+</html>
