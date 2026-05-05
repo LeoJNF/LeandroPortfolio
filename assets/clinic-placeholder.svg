@@ -1,0 +1,16 @@
+<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" rx="28" fill="url(#bg)"/>
+  <rect x="160" y="140" width="480" height="260" rx="20" fill="#e5e7eb"/>
+  <rect x="200" y="180" width="80" height="80" rx="6" fill="#cbd5f5"/>
+  <rect x="320" y="180" width="80" height="80" rx="6" fill="#cbd5f5"/>
+  <rect x="440" y="180" width="80" height="80" rx="6" fill="#cbd5f5"/>
+  <rect x="200" y="290" width="320" height="80" rx="8" fill="#d1d5db"/>
+  <rect x="540" y="290" width="80" height="110" rx="8" fill="#cbd5f5"/>
+  <text x="400" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#6b7280">Foto da clinica</text>
+</svg>

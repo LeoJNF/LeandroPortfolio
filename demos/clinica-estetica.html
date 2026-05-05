@@ -188,6 +188,28 @@
     .metric strong { font-size: 1.4rem; font-family: 'Prata', serif; }
     .metric small { color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: .65rem; }
 
+    .safety { background: #ffffff; }
+    .safety-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 2.5rem;
+    }
+    .safety-card {
+      background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;
+      display: grid; gap: .6rem;
+    }
+    .safety-icon {
+      width: 44px; height: 44px; border-radius: 12px; background: var(--blush);
+      display: flex; align-items: center; justify-content: center; color: var(--rose); font-size: 1.4rem;
+    }
+    .safety-title { font-weight: 600; }
+    .safety-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+    .safety-note {
+      margin-top: 2rem; background: var(--blush); border-radius: 16px; padding: 1.4rem 1.6rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .safety-note .material-symbols-outlined { color: var(--rose); font-size: 1.6rem; }
+    .safety-note strong { font-weight: 600; display: block; margin-bottom: .2rem; }
+    .safety-note p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
     .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
     .team-card { background: white; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; }
     .team-photo {
@@ -219,6 +241,19 @@
     .info-value { font-weight: 600; }
     .info-sub { font-size: .82rem; color: var(--muted); }
 
+    /* FLOATING WHATSAPP */
+    .floating-whatsapp {
+      position: fixed; right: 24px; bottom: 24px; z-index: 200;
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.1rem; border-radius: 999px;
+      background: #25D366; color: white; text-decoration: none;
+      font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      box-shadow: 0 14px 30px rgba(0,0,0,.2);
+      transition: transform .2s, background .2s;
+    }
+    .floating-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+    .floating-whatsapp .material-symbols-outlined { font-size: 1.2rem; }
+
     footer {
       background: #231517; color: rgba(255,255,255,.5);
       text-align: center; padding: 2rem; font-size: .78rem;
@@ -238,6 +273,7 @@
       section.section { padding: 4rem 1.5rem; }
       .procedures-grid { grid-template-columns: 1fr 1fr; }
       .results-grid { grid-template-columns: 1fr; }
+      .safety-grid { grid-template-columns: 1fr 1fr; }
       .team-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
     }
@@ -251,7 +287,11 @@
       .hero-features { grid-template-columns: 1fr; }
       section.section, .faq, .equipe { padding: 3.5rem 1.25rem; }
       .procedures-grid { grid-template-columns: 1fr; }
+      .safety-grid { grid-template-columns: 1fr; }
+      .safety-note { flex-direction: column; align-items: flex-start; }
       .contact-grid { gap: 2rem; }
+      .floating-whatsapp { right: 16px; bottom: 16px; padding: .7rem; }
+      .floating-whatsapp .wa-text { display: none; }
     }
     @media (max-width: 520px) {
       h1 { font-size: 2.2rem; }
@@ -398,6 +438,43 @@
   </div>
 </section>
 
+<section class="section safety" id="seguranca">
+  <div class="section-head">
+    <div class="tag">Segurança</div>
+    <h2>Protocolos de segurança e esterilização</h2>
+    <p class="section-sub">Ambiente controlado, materiais estéreis e protocolos revisados para garantir um atendimento seguro em todos os procedimentos.</p>
+  </div>
+  <div class="safety-grid">
+    <div class="safety-card">
+      <div class="safety-icon"><span class="material-symbols-outlined" aria-hidden="true">verified</span></div>
+      <div class="safety-title">Triagem e avaliação</div>
+      <p class="safety-desc">Checklists clínicos e histórico atualizado para definir o protocolo ideal com segurança.</p>
+    </div>
+    <div class="safety-card">
+      <div class="safety-icon"><span class="material-symbols-outlined" aria-hidden="true">sanitizer</span></div>
+      <div class="safety-title">Esterilização por autoclave</div>
+      <p class="safety-desc">Instrumentais processados em ciclos controlados e rastreáveis para cada paciente.</p>
+    </div>
+    <div class="safety-card">
+      <div class="safety-icon"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span></div>
+      <div class="safety-title">Materiais descartáveis</div>
+      <p class="safety-desc">Uso de itens individuais e selados para reduzir qualquer risco de contaminação cruzada.</p>
+    </div>
+    <div class="safety-card">
+      <div class="safety-icon"><span class="material-symbols-outlined" aria-hidden="true">air</span></div>
+      <div class="safety-title">Ambientes higienizados</div>
+      <p class="safety-desc">Rotina de limpeza reforçada, superfícies desinfectadas e controle de fluxo de pacientes.</p>
+    </div>
+  </div>
+  <div class="safety-note">
+    <span class="material-symbols-outlined" aria-hidden="true">health_and_safety</span>
+    <div>
+      <strong>Segurança do início ao pós-procedimento</strong>
+      <p>Seguimos protocolos atualizados e orientações de boas práticas para garantir conforto e tranquilidade.</p>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="equipe">
   <div class="section-head">
     <div class="tag">Equipe</div>
@@ -492,6 +569,11 @@
   <p style="margin-top:.4rem;"><a href="#">Política de Privacidade</a> · <a href="#">LGPD</a></p>
   <p style="margin-top:1.4rem;font-size:.7rem;opacity:.6;">Site desenvolvido por <a href="../index.html">Leandro Ferreira</a></p>
 </footer>
+
+<a class="floating-whatsapp" href="https://wa.me/5512996459733" target="_blank" aria-label="Falar no WhatsApp">
+  <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+  <span class="wa-text">WhatsApp</span>
+</a>
 
 </body>
 </html>

@@ -196,6 +196,30 @@
     .sh-side-label { font-size: .65rem; color: rgba(255,255,255,.4); margin-top: .3rem; text-transform: uppercase; letter-spacing: .1em; }
     .sh-arrow { font-size: 1.5rem; color: var(--warm); }
 
+    .before-after { background: var(--amber-pale); }
+    .before-after-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 3rem; }
+    .ba-card { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .ba-panels { display: grid; grid-template-columns: 1fr 1fr; }
+    .ba-panel {
+      position: relative; height: 160px; overflow: hidden;
+    }
+    .ba-panel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ba-panel::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.45) 100%);
+      pointer-events: none;
+    }
+    .ba-before img { filter: saturate(.9) brightness(.95); }
+    .ba-after img { filter: saturate(1.1) brightness(1.05); }
+    .ba-label {
+      position: absolute; left: 12px; bottom: 12px; z-index: 1;
+      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600;
+      background: rgba(0,0,0,.55); color: #fff; padding: .25rem .6rem; border-radius: 999px;
+    }
+    .ba-body { padding: 1.2rem 1.4rem; }
+    .ba-title { font-weight: 600; margin-bottom: .4rem; }
+    .ba-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
     /* EQUIPE */
     .equipe { background: var(--sand); padding: 6rem 5rem; }
     .equipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
@@ -231,6 +255,19 @@
     .cta-opt-icon { font-size: 1.8rem; margin-bottom: .4rem; }
     .cta-opt-text { font-weight: 600; font-size: .85rem; }
 
+    /* FLOATING WHATSAPP */
+    .floating-whatsapp {
+      position: fixed; right: 24px; bottom: 24px; z-index: 200;
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.1rem; border-radius: 999px;
+      background: #25D366; color: white; text-decoration: none;
+      font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      box-shadow: 0 14px 30px rgba(0,0,0,.2);
+      transition: transform .2s, background .2s;
+    }
+    .floating-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+    .floating-whatsapp .material-symbols-outlined { font-size: 1.2rem; }
+
     footer { background: var(--ink); color: rgba(255,255,255,.35); text-align: center; padding: 2rem; font-size: .78rem; }
     footer a { color: rgba(255,255,255,.5); text-decoration: none; }
     @media (max-width: 900px) {
@@ -240,6 +277,7 @@
       .hero-right { display: none; }
       .section, .equipe, .faq, .cta { padding: 4rem 1.5rem; }
       .serv-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+      .before-after-grid { grid-template-columns: 1fr 1fr; }
       .equipe-grid { grid-template-columns: 1fr; }
       .faq-grid { grid-template-columns: 1fr; }
     }
@@ -255,8 +293,11 @@
       .btn-warm, .btn-out-dark { width: 100%; text-align: center; }
       .hero-trust { flex-direction: column; gap: .8rem; }
       .section, .equipe, .faq, .cta { padding: 3.5rem 1.25rem; }
+      .before-after-grid { grid-template-columns: 1fr; }
       .cta-grid { flex-direction: column; }
       .cta-opt { width: 100%; }
+      .floating-whatsapp { right: 16px; bottom: 16px; padding: .7rem; }
+      .floating-whatsapp .wa-text { display: none; }
     }
     @media (max-width: 520px) {
       h1 { font-size: 2.3rem; }
@@ -306,7 +347,7 @@
     </p>
     <div class="hero-ctas">
       <a href="#" class="btn-warm">Agendar Avaliação Grátis</a>
-      <a href="#" class="btn-out-dark">Ver Transformações</a>
+      <a href="#transformacoes" class="btn-out-dark">Ver Transformações</a>
     </div>
     <div class="hero-trust">
       <div class="trust-item">
@@ -465,6 +506,62 @@
   </div>
 </section>
 
+<!-- ANTES E DEPOIS -->
+<section class="section before-after" id="transformacoes">
+  <div class="s-tag">Transformações</div>
+  <h2>Antes e depois com estética <em>natural</em></h2>
+  <div class="before-after-grid">
+    <div class="ba-card">
+      <div class="ba-panels">
+        <div class="ba-panel ba-before">
+          <img src="../assets/ba-1-before.jpg" alt="Antes - Lentes de contato dental">
+          <div class="ba-label">Antes</div>
+        </div>
+        <div class="ba-panel ba-after">
+          <img src="../assets/ba-1-after.jpg" alt="Depois - Lentes de contato dental">
+          <div class="ba-label">Depois</div>
+        </div>
+      </div>
+      <div class="ba-body">
+        <div class="ba-title">Lentes de contato dental</div>
+        <p class="ba-desc">Sorriso harmonizado com facetas finas e planejamento digital personalizado.</p>
+      </div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-panels">
+        <div class="ba-panel ba-before">
+          <img src="../assets/ba-2-before.jpg" alt="Antes - Clareamento LED">
+          <div class="ba-label">Antes</div>
+        </div>
+        <div class="ba-panel ba-after">
+          <img src="../assets/ba-2-after.jpg" alt="Depois - Clareamento LED">
+          <div class="ba-label">Depois</div>
+        </div>
+      </div>
+      <div class="ba-body">
+        <div class="ba-title">Clareamento LED</div>
+        <p class="ba-desc">Resultado visível em poucas sessões com protocolo sem sensibilidade.</p>
+      </div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-panels">
+        <div class="ba-panel ba-before">
+          <img src="../assets/ba-3-before.jpg" alt="Antes - Ortodontia invisível">
+          <div class="ba-label">Antes</div>
+        </div>
+        <div class="ba-panel ba-after">
+          <img src="../assets/ba-3-after.jpg" alt="Depois - Ortodontia invisível">
+          <div class="ba-label">Depois</div>
+        </div>
+      </div>
+      <div class="ba-body">
+        <div class="ba-title">Ortodontia invisível</div>
+        <p class="ba-desc">Alinhamento progressivo com planejamento digital e acompanhamento contínuo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EQUIPE -->
 <section class="equipe">
   <div class="s-tag">Nossa Equipe</div>
@@ -562,6 +659,11 @@
   <p style="margin-top:.4rem;"><a href="#">Política de Privacidade</a> · <a href="#">LGPD</a></p>
   <p style="margin-top:1.5rem;font-size:.7rem;opacity:.4;">Site desenvolvido por <a href="../index.html">Leandro Ferreira</a></p>
 </footer>
+
+<a class="floating-whatsapp" href="https://wa.me/5512996459733" target="_blank" aria-label="Falar no WhatsApp">
+  <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+  <span class="wa-text">WhatsApp</span>
+</a>
 
 </body>
 </html>

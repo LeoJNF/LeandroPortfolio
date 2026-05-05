@@ -138,6 +138,22 @@
     .avail-yes { background: #dcfce7; color: #166534; }
     .avail-soon { background: #fef3c7; color: #92400e; }
 
+    /* STATS STRIP */
+    .stats-strip { background: var(--ink); color: white; padding: 2.5rem 4rem; }
+    .stats-strip-inner {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem;
+    }
+    .strip-stat {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px; padding: 1.4rem;
+    }
+    .strip-stat strong { display: block; font-size: 1.6rem; }
+    .strip-stat span {
+      display: block; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.6); margin-top: .2rem;
+    }
+    .strip-desc { font-size: .85rem; color: rgba(255,255,255,.6); margin-top: .6rem; }
+
     /* ESPECIALISTAS */
     .section { padding: 5rem 4rem; }
     .section-header { text-align: center; margin-bottom: 3.5rem; }
@@ -212,6 +228,19 @@
     .sched-opt-icon { font-size: 1.5rem; margin-bottom: .4rem; }
     .sched-opt-label { font-size: .78rem; font-weight: 600; }
 
+    /* FLOATING WHATSAPP */
+    .floating-whatsapp {
+      position: fixed; right: 24px; bottom: 24px; z-index: 200;
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.1rem; border-radius: 999px;
+      background: #25D366; color: white; text-decoration: none;
+      font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      box-shadow: 0 14px 30px rgba(0,0,0,.2);
+      transition: transform .2s, background .2s;
+    }
+    .floating-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+    .floating-whatsapp .material-symbols-outlined { font-size: 1.2rem; }
+
     footer {
       background: #1a0050; color: rgba(255,255,255,.35); text-align: center;
       padding: 2rem; font-size: .78rem;
@@ -220,6 +249,8 @@
     @media (max-width: 900px) {
       nav { padding: 1rem; }
       .hero { grid-template-columns: 1fr; padding: 2rem; }
+      .stats-strip { padding: 2.5rem 1.5rem; }
+      .stats-strip-inner { grid-template-columns: 1fr; }
       .section { padding: 4rem 1.5rem; }
       .prof-grid { grid-template-columns: 1fr 1fr; }
       .struct-grid { grid-template-columns: 1fr; }
@@ -238,6 +269,9 @@
       .prof-grid { grid-template-columns: 1fr; }
       .conv-inner { flex-direction: column; align-items: flex-start; }
       .conv-list { gap: .6rem; }
+      .stats-strip { padding: 2.2rem 1.25rem; }
+      .floating-whatsapp { right: 16px; bottom: 16px; padding: .7rem; }
+      .floating-whatsapp .wa-text { display: none; }
     }
     @media (max-width: 520px) {
       h1 { font-size: 2.2rem; }
@@ -337,6 +371,26 @@
     <div class="spec-card" style="background:linear-gradient(135deg,#ede9fe,#f5f3ff);">
       <div style="font-size:.85rem;font-weight:600;color:var(--purple);">+11 especialidades disponíveis</div>
       <a href="#" style="margin-left:auto;background:var(--purple);color:white;padding:.4rem 1rem;border-radius:8px;text-decoration:none;font-size:.78rem;font-weight:600;">Ver todas →</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="strip-stat">
+      <strong>+15</strong>
+      <span>Especialistas</span>
+      <div class="strip-desc">Equipe completa para todas as fases do cuidado.</div>
+    </div>
+    <div class="strip-stat">
+      <strong>24h</strong>
+      <span>Exames</span>
+      <div class="strip-desc">Resultados rapidos com laboratorio integrado.</div>
+    </div>
+    <div class="strip-stat">
+      <strong>30+</strong>
+      <span>Convenios</span>
+      <div class="strip-desc">Ampla cobertura para facilitar seu atendimento.</div>
     </div>
   </div>
 </section>
@@ -481,6 +535,11 @@
   <p style="margin-top:.4rem;"><a href="#">Política de Privacidade</a> · <a href="#">LGPD</a> · <a href="#">Trabalhe Conosco</a></p>
   <p style="margin-top:1.5rem;font-size:.7rem;opacity:.4;">Site desenvolvido por <a href="../index.html">Leandro Ferreira</a></p>
 </footer>
+
+<a class="floating-whatsapp" href="https://wa.me/5512996459733" target="_blank" aria-label="Falar no WhatsApp">
+  <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+  <span class="wa-text">WhatsApp</span>
+</a>
 
 </body>
 </html>
